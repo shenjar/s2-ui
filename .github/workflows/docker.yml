@@ -1,9 +1,13 @@
 name: Docker Image CI
+
 on:
-  push:
-    tags:
-      - "*"
+  release:
+    types: [published]
   workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   frontend-build:
@@ -57,7 +61,6 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: |
-            shen-sky6/s2-ui
             ghcr.io/shen-sky6/s2-ui
           tags: |
             type=ref,event=branch
@@ -74,11 +77,6 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ matrix.platform }}-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-${{ matrix.platform }}-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v4
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - name: Login to GHCR
         uses: docker/login-action@v4
         with:
@@ -94,7 +92,6 @@ jobs:
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            shen-sky6/s2-ui
             ghcr.io/shen-sky6/s2-ui
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
@@ -122,11 +119,6 @@ jobs:
           path: ${{ runner.temp }}/digests
           pattern: digests-*
           merge-multiple: true
-      - name: Login to Docker Hub
-        uses: docker/login-action@v4
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - name: Login to GHCR
         uses: docker/login-action@v4
         with:
@@ -152,7 +144,7 @@ jobs:
         working-directory: ${{ runner.temp }}/digests
         run: |
           set -e
-          for img in shen-sky6/s2-ui ghcr.io/shen-sky6/s2-ui; do
+          for img in ghcr.io/shen-sky6/s2-ui; do
             TAGS_ARGS=$(echo "$DOCKER_METADATA_OUTPUT_JSON" | jq -cr --arg img "$img" '.tags | map(select(startswith($img))) | map("-t " + .) | join(" ")')
             DIGEST_REFS=$(for f in *; do echo -n "${img}@sha256:$(cat "$f") "; done)
             docker buildx imagetools create $TAGS_ARGS $DIGEST_REFS

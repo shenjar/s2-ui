@@ -1,4 +1,4 @@
-name: Release S-UI
+name: Release S2-UI
 
 on:
   workflow_dispatch:
@@ -7,8 +7,6 @@ on:
   push:
     branches:
       - main
-    tags:
-      - "*"
     paths:
       - '.github/workflows/release.yml'
       - 'frontend/**'
@@ -17,6 +15,9 @@ on:
       - 'go.mod'
       - 'go.sum'
       - 's-ui.service'
+
+permissions:
+  contents: write
 
 env:
   NODE_VERSION: "25"
@@ -164,7 +165,7 @@ jobs:
             echo "CGO_LDFLAGS=--sysroot=$SYSROOT -static" >> $GITHUB_ENV
           fi
 
-      - name: Build s-ui
+      - name: Build s2-ui
         run: |
           set -e
           BUILD_TAGS="with_quic,with_grpc,with_utls,with_acme,with_gvisor,badlinkname,tfogo_checklinkname0,with_tailscale"
@@ -191,8 +192,7 @@ jobs:
       - name: Upload to Release
         uses: svenstaro/upload-release-action@v2
         if: |
-          (github.event_name == 'release' && github.event.action == 'published') ||
-          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/'))
+          github.event_name == 'release' && github.event.action == 'published'
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.event_name == 'release' && github.event.release.tag_name || github.ref_name }}
