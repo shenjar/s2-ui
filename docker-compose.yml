@@ -1,0 +1,22 @@
+---
+services:
+  s-ui:
+    image: shen-sky6/s2-ui
+    container_name: s-ui
+    hostname: "s-ui"
+    volumes:
+      - "./db:/app/db"
+      - "./cert:/app/cert"
+    tty: true
+    restart: unless-stopped
+    ports:
+      - "2095:2095"
+      - "2096:2096"
+    networks:
+      - s-ui
+    entrypoint: "./entrypoint.sh"
+
+networks:
+  s-ui:
+    driver: bridge
+  

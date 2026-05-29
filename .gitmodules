@@ -1,0 +1,4 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/shen-sky6/s2-ui-frontend.git
+	branch = main
