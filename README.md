@@ -1,8 +1,10 @@
-# S-UI
+# S2-UI
+[简体中文](README.zh-CN.md)
+
 **An Advanced Web Panel • Built on SagerNet/Sing-Box**
 
 ![](https://img.shields.io/github/v/release/shen-sky6/s2-ui.svg)
-![S-UI Docker pull](https://img.shields.io/docker/pulls/shen-sky6/s2-ui.svg)
+![S2-UI Docker pull](https://img.shields.io/docker/pulls/shen-sky6/s2-ui.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/shen-sky6/s2-ui)](https://goreportcard.com/report/github.com/shen-sky6/s2-ui)
 [![Downloads](https://img.shields.io/github/downloads/shen-sky6/s2-ui/total.svg)](https://img.shields.io/github/downloads/shen-sky6/s2-ui/total.svg)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
@@ -12,6 +14,8 @@
 **If you think this project is helpful to you, you may wish to give a**:star2:
 
 **Want to contribute?** See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, coding conventions, testing, and the pull request process.
+
+Based on [alireza0/s-ui](https://github.com/alireza0/s-ui). Thanks to the original author and contributors.
 
 ## Quick Overview
 | Features                               |      Enable?       |
@@ -73,12 +77,12 @@ VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shen-sky6/s2-
 ## Manual installation
 
 ### Linux/macOS
-1. Get the latest version of S-UI based on your OS/Architecture from GitHub: [https://github.com/shen-sky6/s2-ui/releases/latest](https://github.com/shen-sky6/s2-ui/releases/latest)
+1. Get the latest version of S2-UI based on your OS/Architecture from GitHub: [https://github.com/shen-sky6/s2-ui/releases/latest](https://github.com/shen-sky6/s2-ui/releases/latest)
 2. **OPTIONAL** Get the latest version of `s-ui.sh` [https://raw.githubusercontent.com/shen-sky6/s2-ui/main/s-ui.sh](https://raw.githubusercontent.com/shen-sky6/s2-ui/main/s-ui.sh)
 3. **OPTIONAL** Copy `s-ui.sh` to /usr/bin/ and run `chmod +x /usr/bin/s-ui`.
 4. Extract s-ui tar.gz file to a directory of your choice and navigate to the directory where you extracted the tar.gz file.
 5. Copy *.service files to /etc/systemd/system/ and run `systemctl daemon-reload`.
-6. Enable autostart and start S-UI service using `systemctl enable s-ui --now`
+6. Enable autostart and start S2-UI service using `systemctl enable s-ui --now`
 7. Start sing-box service using `systemctl enable sing-box --now`
 
 ### Windows
@@ -89,7 +93,7 @@ VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shen-sky6/s2-
 5. Follow the installation wizard
 6. Access the panel at http://localhost:2095/app
 
-## Uninstall S-UI
+## Uninstall S2-UI
 
 ```sh
 sudo -i
@@ -116,7 +120,7 @@ rm /usr/bin/s-ui
 curl -fsSL https://get.docker.com | sh
 ```
 
-**Step 2:** Install S-UI
+**Step 2:** Install S2-UI
 
 > Docker compose method
 
