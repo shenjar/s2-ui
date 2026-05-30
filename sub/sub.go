@@ -9,11 +9,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/shen-sky6/s2-ui/config"
-	"github.com/shen-sky6/s2-ui/logger"
-	"github.com/shen-sky6/s2-ui/middleware"
-	"github.com/shen-sky6/s2-ui/network"
-	"github.com/shen-sky6/s2-ui/service"
+	"github.com/shenjar/s2-ui/config"
+	"github.com/shenjar/s2-ui/logger"
+	"github.com/shenjar/s2-ui/middleware"
+	"github.com/shenjar/s2-ui/network"
+	"github.com/shenjar/s2-ui/service"
 
 	"github.com/gin-gonic/gin"
 )

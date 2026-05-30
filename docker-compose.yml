@@ -1,7 +1,7 @@
 ---
 services:
   s-ui:
-    image: shen-sky6/s2-ui
+    image: shenjar/s2-ui
     container_name: s-ui
     hostname: "s-ui"
     volumes:

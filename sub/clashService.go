@@ -3,9 +3,9 @@ package sub
 import (
 	"strings"
 
-	"github.com/shen-sky6/s2-ui/logger"
-	"github.com/shen-sky6/s2-ui/service"
-	"github.com/shen-sky6/s2-ui/util"
+	"github.com/shenjar/s2-ui/logger"
+	"github.com/shenjar/s2-ui/service"
+	"github.com/shenjar/s2-ui/util"
 
 	"gopkg.in/yaml.v3"
 )

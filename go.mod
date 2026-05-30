@@ -1,4 +1,4 @@
-module github.com/shen-sky6/s2-ui
+module github.com/shenjar/s2-ui
 
 go 1.26.3
 

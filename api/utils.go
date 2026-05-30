@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/shen-sky6/s2-ui/logger"
+	"github.com/shenjar/s2-ui/logger"
 
 	"github.com/gin-gonic/gin"
 )

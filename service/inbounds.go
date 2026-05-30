@@ -6,10 +6,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/shen-sky6/s2-ui/database"
-	"github.com/shen-sky6/s2-ui/database/model"
-	"github.com/shen-sky6/s2-ui/util"
-	"github.com/shen-sky6/s2-ui/util/common"
+	"github.com/shenjar/s2-ui/database"
+	"github.com/shenjar/s2-ui/database/model"
+	"github.com/shenjar/s2-ui/util"
+	"github.com/shenjar/s2-ui/util/common"
 
 	"gorm.io/gorm"
 )

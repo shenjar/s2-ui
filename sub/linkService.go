@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/shen-sky6/s2-ui/logger"
-	"github.com/shen-sky6/s2-ui/util"
+	"github.com/shenjar/s2-ui/logger"
+	"github.com/shenjar/s2-ui/util"
 )
 
 type Link struct {

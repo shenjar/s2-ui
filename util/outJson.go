@@ -3,9 +3,9 @@ package util
 import (
 	"encoding/json"
 
-	"github.com/shen-sky6/s2-ui/util/common"
+	"github.com/shenjar/s2-ui/util/common"
 
-	"github.com/shen-sky6/s2-ui/database/model"
+	"github.com/shenjar/s2-ui/database/model"
 )
 
 // Fill Inbound's out_json

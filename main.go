@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/shen-sky6/s2-ui/app"
-	"github.com/shen-sky6/s2-ui/cmd"
+	"github.com/shenjar/s2-ui/app"
+	"github.com/shenjar/s2-ui/cmd"
 )
 
 func runApp() {

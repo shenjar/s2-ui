@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shen-sky6/s2-ui/config"
-	"github.com/shen-sky6/s2-ui/database"
-	"github.com/shen-sky6/s2-ui/database/model"
-	"github.com/shen-sky6/s2-ui/logger"
+	"github.com/shenjar/s2-ui/config"
+	"github.com/shenjar/s2-ui/database"
+	"github.com/shenjar/s2-ui/database/model"
+	"github.com/shenjar/s2-ui/logger"
 
 	"github.com/sagernet/sing-box/common/tls"
 	"github.com/shirou/gopsutil/v4/cpu"

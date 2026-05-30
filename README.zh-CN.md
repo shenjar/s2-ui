@@ -3,10 +3,10 @@
 
 [English](README.md)
 
-![](https://img.shields.io/github/v/release/shen-sky6/s2-ui.svg)
-![S2-UI Docker pull](https://img.shields.io/docker/pulls/shen-sky6/s2-ui.svg)
-[![Go Report Card](https://goreportcard.com/badge/github.com/shen-sky6/s2-ui)](https://goreportcard.com/report/github.com/shen-sky6/s2-ui)
-[![Downloads](https://img.shields.io/github/downloads/shen-sky6/s2-ui/total.svg)](https://img.shields.io/github/downloads/shen-sky6/s2-ui/total.svg)
+![](https://img.shields.io/github/v/release/shenjar/s2-ui.svg)
+![S2-UI Docker pull](https://img.shields.io/docker/pulls/shenjar/s2-ui.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/shenjar/s2-ui)](https://goreportcard.com/report/github.com/shenjar/s2-ui)
+[![Downloads](https://img.shields.io/github/downloads/shenjar/s2-ui/total.svg)](https://img.shields.io/github/downloads/shenjar/s2-ui/total.svg)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 > **免责声明：** 本项目仅供个人学习与交流使用，请勿用于非法用途，请勿用于生产环境。
@@ -38,13 +38,13 @@
 
 ## 截图
 
-!["Main"](https://github.com/shen-sky6/s2-ui-frontend/raw/main/media/main.png)
+!["Main"](https://github.com/shenjar/s2-ui-frontend/raw/main/media/main.png)
 
-[更多 UI 截图](https://github.com/shen-sky6/s2-ui-frontend/blob/main/screenshots.md)
+[更多 UI 截图](https://github.com/shenjar/s2-ui-frontend/blob/main/screenshots.md)
 
 ## API 文档
 
-[API Documentation Wiki](https://github.com/shen-sky6/s2-ui/wiki/API-Documentation)
+[API Documentation Wiki](https://github.com/shenjar/s2-ui/wiki/API-Documentation)
 
 ## 默认安装信息
 - 面板端口：2095
@@ -57,11 +57,11 @@
 
 ### Linux/macOS
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/shen-sky6/s2-ui/main/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/shenjar/s2-ui/main/install.sh)
 ```
 
 ### Windows
-1. 从 [GitHub Releases](https://github.com/shen-sky6/s2-ui/releases/latest) 下载最新 Windows 版本
+1. 从 [GitHub Releases](https://github.com/shenjar/s2-ui/releases/latest) 下载最新 Windows 版本
 2. 解压 ZIP 文件
 3. 以管理员身份运行 `install-windows.bat`
 4. 按安装向导操作
@@ -71,14 +71,14 @@ bash <(curl -Ls https://raw.githubusercontent.com/shen-sky6/s2-ui/main/install.s
 **步骤 1：** 如果要安装指定历史版本，请在安装命令末尾添加版本号。例如版本 `1.0.0`：
 
 ```sh
-VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shen-sky6/s2-ui/$VERSION/install.sh) $VERSION
+VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shenjar/s2-ui/$VERSION/install.sh) $VERSION
 ```
 
 ## 手动安装
 
 ### Linux/macOS
-1. 根据你的系统和架构，从 GitHub 下载最新版本：[https://github.com/shen-sky6/s2-ui/releases/latest](https://github.com/shen-sky6/s2-ui/releases/latest)
-2. **可选：** 获取最新的 `s-ui.sh`：[https://raw.githubusercontent.com/shen-sky6/s2-ui/main/s-ui.sh](https://raw.githubusercontent.com/shen-sky6/s2-ui/main/s-ui.sh)
+1. 根据你的系统和架构，从 GitHub 下载最新版本：[https://github.com/shenjar/s2-ui/releases/latest](https://github.com/shenjar/s2-ui/releases/latest)
+2. **可选：** 获取最新的 `s-ui.sh`：[https://raw.githubusercontent.com/shenjar/s2-ui/main/s-ui.sh](https://raw.githubusercontent.com/shenjar/s2-ui/main/s-ui.sh)
 3. **可选：** 将 `s-ui.sh` 复制到 `/usr/bin/`，并执行 `chmod +x /usr/bin/s-ui`
 4. 解压 `s-ui` 的 tar.gz 文件到你选择的目录，并进入解压目录
 5. 将 `*.service` 文件复制到 `/etc/systemd/system/`，并执行 `systemctl daemon-reload`
@@ -86,7 +86,7 @@ VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shen-sky6/s2-
 7. 启动 sing-box 服务：`systemctl enable sing-box --now`
 
 ### Windows
-1. 从 GitHub 获取最新 Windows 版本：[https://github.com/shen-sky6/s2-ui/releases/latest](https://github.com/shen-sky6/s2-ui/releases/latest)
+1. 从 GitHub 获取最新 Windows 版本：[https://github.com/shenjar/s2-ui/releases/latest](https://github.com/shenjar/s2-ui/releases/latest)
 2. 下载对应的 Windows 安装包，例如 `s-ui-windows-amd64.zip`
 3. 将 ZIP 文件解压到你选择的目录
 4. 以管理员身份运行 `install-windows.bat`
@@ -126,7 +126,7 @@ curl -fsSL https://get.docker.com | sh
 
 ```shell
 mkdir s-ui && cd s-ui
-wget -q https://raw.githubusercontent.com/shen-sky6/s2-ui/main/docker-compose.yml
+wget -q https://raw.githubusercontent.com/shenjar/s2-ui/main/docker-compose.yml
 docker compose up -d
 ```
 
@@ -139,13 +139,13 @@ docker run -itd \
     -v $PWD/db/:/app/db/ \
     -v $PWD/cert/:/root/cert/ \
     --name s-ui --restart=unless-stopped \
-    shen-sky6/s2-ui:latest
+    shenjar/s2-ui:latest
 ```
 
 > 自行构建镜像
 
 ```shell
-git clone https://github.com/shen-sky6/s2-ui
+git clone https://github.com/shenjar/s2-ui
 git submodule update --init --recursive
 docker build -t s-ui .
 ```
@@ -165,14 +165,14 @@ docker build -t s-ui .
 ### 克隆仓库
 ```shell
 # 克隆仓库
-git clone https://github.com/shen-sky6/s2-ui
+git clone https://github.com/shenjar/s2-ui
 # 克隆子模块
 git submodule update --init --recursive
 ```
 
 ### - 前端
 
-前端代码请查看 [s2-ui-frontend](https://github.com/shen-sky6/s2-ui-frontend)
+前端代码请查看 [s2-ui-frontend](https://github.com/shenjar/s2-ui-frontend)
 
 ### - 后端
 > 请先构建一次前端。
@@ -253,4 +253,4 @@ certbot certonly --standalone --register-unsafely-without-email --non-interactiv
 </details>
 
 ## Stargazers over Time
-[![Stargazers over time](https://starchart.cc/shen-sky6/s2-ui.svg)](https://starchart.cc/shen-sky6/s2-ui)
+[![Stargazers over time](https://starchart.cc/shenjar/s2-ui.svg)](https://starchart.cc/shenjar/s2-ui)

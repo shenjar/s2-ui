@@ -61,7 +61,7 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: |
-            ghcr.io/shen-sky6/s2-ui
+            ghcr.io/shenjar/s2-ui
           tags: |
             type=ref,event=branch
             type=ref,event=tag
@@ -92,7 +92,7 @@ jobs:
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: |
-            ghcr.io/shen-sky6/s2-ui
+            ghcr.io/shenjar/s2-ui
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
@@ -132,8 +132,8 @@ jobs:
         uses: docker/metadata-action@v6
         with:
           images: |
-            shen-sky6/s2-ui
-            ghcr.io/shen-sky6/s2-ui
+            shenjar/s2-ui
+            ghcr.io/shenjar/s2-ui
           tags: |
             type=ref,event=branch
             type=ref,event=tag
@@ -144,7 +144,7 @@ jobs:
         working-directory: ${{ runner.temp }}/digests
         run: |
           set -e
-          for img in ghcr.io/shen-sky6/s2-ui; do
+          for img in ghcr.io/shenjar/s2-ui; do
             TAGS_ARGS=$(echo "$DOCKER_METADATA_OUTPUT_JSON" | jq -cr --arg img "$img" '.tags | map(select(startswith($img))) | map("-t " + .) | join(" ")')
             DIGEST_REFS=$(for f in *; do echo -n "${img}@sha256:$(cat "$f") "; done)
             docker buildx imagetools create $TAGS_ARGS $DIGEST_REFS

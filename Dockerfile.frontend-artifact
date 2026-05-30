@@ -34,7 +34,7 @@ RUN if [ "$TARGETARCH" = "arm" ]; then export GOARM=7; [ "$TARGETVARIANT" = "v6"
     -o sui main.go
 
 FROM alpine
-LABEL org.opencontainers.image.source="https://github.com/shen-sky6/s2-ui"
+LABEL org.opencontainers.image.source="https://github.com/shenjar/s2-ui"
 ENV TZ=Asia/Tehran
 WORKDIR /app
 RUN set -ex && apk add --no-cache --upgrade bash tzdata ca-certificates nftables
