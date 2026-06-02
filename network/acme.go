@@ -34,7 +34,7 @@ var acmeLogOnce sync.Once
 //
 // Certificates are persisted under storageDir so they survive restarts and we
 // avoid re-issuing (which would otherwise hit Let's Encrypt rate limits).
-func ACMETLSConfig(ctx context.Context, domain, email, storageDir string) (*tls.Config, error) {
+func ACMETLSConfig(domain, email, storageDir string) (*tls.Config, error) {
 	acmeLogOnce.Do(func() {
 		certmagic.Default.Logger = logger.NewZapForwarder("acme")
 	})
@@ -45,7 +45,11 @@ func ACMETLSConfig(ctx context.Context, domain, email, storageDir string) (*tls.
 
 	cfg := certmagic.NewDefault()
 
-	obtainCtx, cancel := context.WithTimeout(ctx, acmeObtainTimeout)
+	// Derive from context.Background(), NOT the server's context: a panel
+	// restart (SIGHUP) cancels the server context before Start() runs again,
+	// which would abort issuance immediately with "context canceled". The
+	// obtain is still bounded by acmeObtainTimeout.
+	obtainCtx, cancel := context.WithTimeout(context.Background(), acmeObtainTimeout)
 	defer cancel()
 	if err := cfg.ManageSync(obtainCtx, []string{domain}); err != nil {
 		return nil, err
