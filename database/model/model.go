@@ -47,9 +47,9 @@ type Client struct {
 
 type Stats struct {
 	Id        uint64 `json:"id" gorm:"primaryKey;autoIncrement"`
-	DateTime  int64  `json:"dateTime"`
+	DateTime  int64  `json:"dateTime" gorm:"index:idx_stats_tag_dt,priority:2"`
 	Resource  string `json:"resource"`
-	Tag       string `json:"tag"`
+	Tag       string `json:"tag" gorm:"index:idx_stats_tag_dt,priority:1"`
 	Direction bool   `json:"direction"`
 	Traffic   int64  `json:"traffic"`
 }
