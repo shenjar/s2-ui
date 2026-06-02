@@ -397,6 +397,16 @@ func (a *ApiService) GetSingboxConfig(c *gin.Context) {
 	c.Writer.Write(*rawConfig)
 }
 
+func (a *ApiService) TestAcme(c *gin.Context) {
+	domain := c.Request.FormValue("domain")
+	email := c.Request.FormValue("email")
+	if err := a.ConfigService.TestAcme(domain, email); err != nil {
+		pureJsonMsg(c, false, err.Error())
+		return
+	}
+	pureJsonMsg(c, true, "")
+}
+
 func (a *ApiService) GetCheckOutbound(c *gin.Context) {
 	tag := c.Query("tag")
 	link := c.Query("link")
