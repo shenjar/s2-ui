@@ -182,7 +182,7 @@ func (s *Server) Start() (err error) {
 		email, _ := s.settingService.GetWebAcmeEmail()
 		if domain == "" {
 			logger.Warning("web ACME enabled but webDomain is empty; serving HTTP")
-		} else if tlsConfig, err := network.ACMETLSConfig(s.ctx, domain, email, config.GetCertFolderPath()); err != nil {
+		} else if tlsConfig, err := network.ACMETLSConfig(domain, email, config.GetCertFolderPath()); err != nil {
 			logger.Error("web ACME certificate error, falling back to HTTP:", err)
 		} else {
 			listener = network.NewAutoHttpsListener(listener)
