@@ -17,11 +17,11 @@ import (
 // driven by certmagic's own cache maintenance goroutine and is not bounded by it.
 const acmeObtainTimeout = 120 * time.Second
 
-// acmeLogOnce wires certmagic's zap logger into the panel log buffer exactly
-// once, before the first certmagic.NewDefault() (which copies Default.Logger
-// into the shared cache). This surfaces ACME issuance/renewal diagnostics in
-// the panel "Logs" view.
-var acmeLogOnce sync.Once
+// acmeMu serialises all writes to certmagic's package-level globals
+// (certmagic.Default, certmagic.DefaultACME). Without this, concurrent calls
+// from the web server and the sub server goroutines would race on Email, Storage
+// and Logger, with the last writer winning unpredictably.
+var acmeMu sync.Mutex
 
 // ACMETLSConfig obtains (and thereafter auto-renews) a Let's Encrypt certificate
 // for the given domain using the HTTP-01 challenge, and returns a *tls.Config
@@ -35,9 +35,10 @@ var acmeLogOnce sync.Once
 // Certificates are persisted under storageDir so they survive restarts and we
 // avoid re-issuing (which would otherwise hit Let's Encrypt rate limits).
 func ACMETLSConfig(domain, email, storageDir string) (*tls.Config, error) {
-	acmeLogOnce.Do(func() {
-		certmagic.Default.Logger = logger.NewZapForwarder("acme")
-	})
+	acmeMu.Lock()
+	defer acmeMu.Unlock()
+
+	certmagic.Default.Logger = logger.NewZapForwarder("acme")
 	certmagic.DefaultACME.Agreed = true
 	certmagic.DefaultACME.Email = email
 	certmagic.DefaultACME.DisableTLSALPNChallenge = true // use HTTP-01 on port 80
