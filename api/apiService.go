@@ -193,11 +193,11 @@ func (a *ApiService) GetSettings(c *gin.Context) {
 func (a *ApiService) GetStats(c *gin.Context) {
 	resource := c.Query("resource")
 	tag := c.Query("tag")
-	period := c.Query("period")
-	if period == "" {
-		period = "hour"
+	limit, err := strconv.Atoi(c.Query("limit"))
+	if err != nil {
+		limit = 100
 	}
-	data, err := a.StatsService.GetStats(resource, tag, period)
+	data, err := a.StatsService.GetStats(resource, tag, limit)
 	if err != nil {
 		jsonMsg(c, "", err)
 		return
@@ -395,16 +395,6 @@ func (a *ApiService) GetSingboxConfig(c *gin.Context) {
 	c.Header("Content-Type", "application/json")
 	c.Header("Content-Disposition", "attachment; filename=config_"+time.Now().Format("20060102-150405")+".json")
 	c.Writer.Write(*rawConfig)
-}
-
-func (a *ApiService) TestAcme(c *gin.Context) {
-	domain := c.Request.FormValue("domain")
-	email := c.Request.FormValue("email")
-	if err := a.ConfigService.TestAcme(domain, email); err != nil {
-		pureJsonMsg(c, false, err.Error())
-		return
-	}
-	pureJsonMsg(c, true, "")
 }
 
 func (a *ApiService) GetCheckOutbound(c *gin.Context) {

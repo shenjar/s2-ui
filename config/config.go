@@ -66,11 +66,3 @@ func GetDBFolderPath() string {
 func GetDBPath() string {
 	return fmt.Sprintf("%s/%s.db", GetDBFolderPath(), GetName())
 }
-
-// GetCertFolderPath returns the directory used to persist ACME-issued
-// certificates. It lives inside the DB folder so it is covered by the same
-// volume mount as the database, surviving restarts and avoiding re-issuance
-// (which would otherwise hit Let's Encrypt rate limits).
-func GetCertFolderPath() string {
-	return filepath.Join(GetDBFolderPath(), "cert")
-}
