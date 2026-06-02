@@ -5,6 +5,137 @@ green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
 
+LANG_PREF=$(cat ~/.s2ui_lang 2>/dev/null || echo "en")
+
+t() {
+    local key=$1
+    if [[ $LANG_PREF == "zh" ]]; then
+        case $key in
+            menu_title)        echo "S2-UI 管理脚本" ;;
+            opt_exit)          echo "退出" ;;
+            opt_install)       echo "安装" ;;
+            opt_update)        echo "更新" ;;
+            opt_custom_ver)    echo "自定义版本" ;;
+            opt_uninstall)     echo "卸载" ;;
+            opt_reset_admin)   echo "重置管理员凭据为默认值" ;;
+            opt_set_admin)     echo "设置管理员凭据" ;;
+            opt_view_admin)    echo "查看管理员凭据" ;;
+            opt_reset_panel)   echo "重置面板设置" ;;
+            opt_set_panel)     echo "设置面板参数" ;;
+            opt_view_panel)    echo "查看面板设置" ;;
+            opt_start)         echo "S2-UI 启动" ;;
+            opt_stop)          echo "S2-UI 停止" ;;
+            opt_restart)       echo "S2-UI 重启" ;;
+            opt_status)        echo "S2-UI 查看状态" ;;
+            opt_log)           echo "S2-UI 查看日志" ;;
+            opt_enable)        echo "S2-UI 开启开机自启" ;;
+            opt_disable)       echo "S2-UI 关闭开机自启" ;;
+            opt_bbr)           echo "开启或关闭 BBR" ;;
+            opt_ssl)           echo "SSL 证书管理" ;;
+            opt_cf_ssl)        echo "Cloudflare SSL 证书" ;;
+            opt_lang)          echo "Language / 切换语言" ;;
+            prompt_select)     echo "请输入选项 [0-21]: " ;;
+            state_running)     echo "运行中" ;;
+            state_stopped)     echo "未运行" ;;
+            state_not_inst)    echo "未安装" ;;
+            autostart_yes)     echo "是" ;;
+            autostart_no)      echo "否" ;;
+            autostart_label)   echo "开机自启" ;;
+            err_not_root)      echo "错误：请以 root 身份运行此脚本！" ;;
+            err_install_first) echo "请先安装面板" ;;
+            err_already_inst)  echo "面板已安装，请勿重复安装" ;;
+            err_invalid_num)   echo "请输入正确的选项 [0-21]" ;;
+            msg_press_enter)   echo "按回车返回主菜单：" ;;
+            msg_restart_svc)   echo "重启服务" ;;
+            msg_cancelled)     echo "已取消" ;;
+            confirm_update)    echo "此操作将强制重装最新版，数据不会丢失，是否继续？" ;;
+            confirm_uninstall) echo "确定要卸载面板吗？" ;;
+            confirm_reset_admin) echo "确定要将管理员凭据重置为默认值吗？" ;;
+            confirm_reset_panel) echo "确定要将设置重置为默认值吗？" ;;
+            warn_reset_admin)  echo "不建议将管理员凭据重置为默认值！" ;;
+            warn_set_admin)    echo "不建议将管理员凭据设置为简单文本。" ;;
+            prompt_username)   echo "请输入用户名：" ;;
+            prompt_password)   echo "请输入密码：" ;;
+            prompt_panel_port) echo "输入面板端口（留空保留现有/默认值）：" ;;
+            prompt_panel_path) echo "输入面板路径（留空保留现有/默认值）：" ;;
+            prompt_sub_port)   echo "输入订阅端口（留空保留现有/默认值）：" ;;
+            prompt_sub_path)   echo "输入订阅路径（留空保留现有/默认值）：" ;;
+            msg_initializing)  echo "初始化中，请稍候..." ;;
+            msg_uninstalled)   echo "卸载成功，如需删除脚本，退出后执行 rm /usr/local/s-ui -f 命令。" ;;
+            msg_panel_uri)     echo "可通过以下地址访问面板：" ;;
+            msg_lang_select)   echo "选择语言 / Select language:" ;;
+            msg_lang_en)       echo "1. English" ;;
+            msg_lang_zh)       echo "2. 简体中文" ;;
+            msg_lang_saved)    echo "语言已切换为中文。" ;;
+            msg_panel_version) echo "输入面板版本（如 0.0.1）：" ;;
+            msg_downloading)   echo "正在下载并安装版本" ;;
+            *) echo "$key" ;;
+        esac
+    else
+        case $key in
+            menu_title)        echo "S2-UI Admin Management Script" ;;
+            opt_exit)          echo "Exit" ;;
+            opt_install)       echo "Install" ;;
+            opt_update)        echo "Update" ;;
+            opt_custom_ver)    echo "Custom Version" ;;
+            opt_uninstall)     echo "Uninstall" ;;
+            opt_reset_admin)   echo "Reset admin credentials to default" ;;
+            opt_set_admin)     echo "Set admin credentials" ;;
+            opt_view_admin)    echo "View admin credentials" ;;
+            opt_reset_panel)   echo "Reset Panel Settings" ;;
+            opt_set_panel)     echo "Set Panel settings" ;;
+            opt_view_panel)    echo "View Panel Settings" ;;
+            opt_start)         echo "S2-UI Start" ;;
+            opt_stop)          echo "S2-UI Stop" ;;
+            opt_restart)       echo "S2-UI Restart" ;;
+            opt_status)        echo "S2-UI Check State" ;;
+            opt_log)           echo "S2-UI Check Logs" ;;
+            opt_enable)        echo "S2-UI Enable Autostart" ;;
+            opt_disable)       echo "S2-UI Disable Autostart" ;;
+            opt_bbr)           echo "Enable or Disable BBR" ;;
+            opt_ssl)           echo "SSL Certificate Management" ;;
+            opt_cf_ssl)        echo "Cloudflare SSL Certificate" ;;
+            opt_lang)          echo "Language / 切换语言" ;;
+            prompt_select)     echo "Please enter your selection [0-21]: " ;;
+            state_running)     echo "Running" ;;
+            state_stopped)     echo "Not Running" ;;
+            state_not_inst)    echo "Not Installed" ;;
+            autostart_yes)     echo "Yes" ;;
+            autostart_no)      echo "No" ;;
+            autostart_label)   echo "Start automatically" ;;
+            err_not_root)      echo "ERROR: You must be root to run this script!" ;;
+            err_install_first) echo "Please install the panel first" ;;
+            err_already_inst)  echo "Panel is already installed, Please do not reinstall" ;;
+            err_invalid_num)   echo "Please enter the correct number [0-21]" ;;
+            msg_press_enter)   echo "Press enter to return to the main menu: " ;;
+            msg_restart_svc)   echo "Restart the service" ;;
+            msg_cancelled)     echo "Cancelled" ;;
+            confirm_update)    echo "This function will forcefully reinstall the latest version, and the data will not be lost. Do you want to continue?" ;;
+            confirm_uninstall) echo "Are you sure you want to uninstall the panel?" ;;
+            confirm_reset_admin) echo "Are you sure you want to reset admin's credentials to default?" ;;
+            confirm_reset_panel) echo "Are you sure you want to reset settings to default?" ;;
+            warn_reset_admin)  echo "It is not recommended to set admin's credentials to default!" ;;
+            warn_set_admin)    echo "It is not recommended to set admin's credentials to a complex text." ;;
+            prompt_username)   echo "Please set up your username:" ;;
+            prompt_password)   echo "Please set up your password:" ;;
+            prompt_panel_port) echo "Enter the panel port (leave blank for existing/default value):" ;;
+            prompt_panel_path) echo "Enter the panel path (leave blank for existing/default value):" ;;
+            prompt_sub_port)   echo "Enter the subscription port (leave blank for existing/default value):" ;;
+            prompt_sub_path)   echo "Enter the subscription path (leave blank for existing/default value):" ;;
+            msg_initializing)  echo "Initializing, please wait..." ;;
+            msg_uninstalled)   echo "Uninstalled Successfully, If you want to remove this script, then after exiting the script run" ;;
+            msg_panel_uri)     echo "You may access the Panel with following URL(s):" ;;
+            msg_lang_select)   echo "Select language / 选择语言:" ;;
+            msg_lang_en)       echo "1. English" ;;
+            msg_lang_zh)       echo "2. 简体中文" ;;
+            msg_lang_saved)    echo "Language switched to English." ;;
+            msg_panel_version) echo "Enter the panel version (like 0.0.1):" ;;
+            msg_downloading)   echo "Downloading and installing panel version" ;;
+            *) echo "$key" ;;
+        esac
+    fi
+}
+
 function LOGD() {
     echo -e "${yellow}[DEG] $* ${plain}"
 }
@@ -17,7 +148,7 @@ function LOGI() {
     echo -e "${green}[INF] $* ${plain}"
 }
 
-[[ $EUID -ne 0 ]] && LOGE "ERROR: You must be root to run this script! \n" && exit 1
+[[ $EUID -ne 0 ]] && LOGE "$(t err_not_root)\n" && exit 1
 
 if [[ -f /etc/os-release ]]; then
     source /etc/os-release
@@ -49,7 +180,7 @@ confirm() {
 }
 
 confirm_restart() {
-    confirm "Restart the ${1} service" "y"
+    confirm "$(t msg_restart_svc) ${1}" "y"
     if [[ $? == 0 ]]; then
         restart
     else
@@ -58,7 +189,7 @@ confirm_restart() {
 }
 
 before_show_menu() {
-    echo && echo -n -e "${yellow}Press enter to return to the main menu: ${plain}" && read temp
+    echo && echo -n -e "${yellow}$(t msg_press_enter)${plain}" && read temp
     show_menu
 }
 
@@ -74,9 +205,9 @@ install() {
 }
 
 update() {
-    confirm "This function will forcefully reinstall the latest version, and the data will not be lost. Do you want to continue?" "n"
+    confirm "$(t confirm_update)" "n"
     if [[ $? != 0 ]]; then
-        LOGE "Cancelled"
+        LOGE "$(t msg_cancelled)"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -90,7 +221,7 @@ update() {
 }
 
 custom_version() {
-    echo "Enter the panel version (like 0.0.1):"
+    echo "$(t msg_panel_version)"
     read panel_version
 
     if [ -z "$panel_version" ]; then
@@ -102,12 +233,12 @@ custom_version() {
 
     install_command="bash <(curl -Ls $download_link) $panel_version"
 
-    echo "Downloading and installing panel version $panel_version..."
+    echo "$(t msg_downloading) $panel_version..."
     eval $install_command
 }
 
 uninstall() {
-    confirm "Are you sure you want to uninstall the panel?" "n"
+    confirm "$(t confirm_uninstall)" "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
@@ -123,7 +254,7 @@ uninstall() {
     rm /usr/local/s-ui/ -rf
 
     echo ""
-    echo -e "Uninstalled Successfully, If you want to remove this script, then after exiting the script run ${green}rm /usr/local/s-ui -f${plain} to delete it."
+    echo -e "$(t msg_uninstalled) ${green}rm /usr/local/s-ui -f${plain} to delete it."
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -132,8 +263,8 @@ uninstall() {
 }
 
 reset_admin() {
-    echo "It is not recommended to set admin's credentials to default!"
-    confirm "Are you sure you want to reset admin's credentials to default ?" "n"
+    echo "$(t warn_reset_admin)"
+    confirm "$(t confirm_reset_admin)" "n"
     if [[ $? == 0 ]]; then
         /usr/local/s-ui/sui admin -reset
     fi
@@ -141,9 +272,9 @@ reset_admin() {
 }
 
 set_admin() {
-    echo "It is not recommended to set admin's credentials to a complex text."
-    read -p "Please set up your username:" config_account
-    read -p "Please set up your password:" config_password
+    echo "$(t warn_set_admin)"
+    read -p "$(t prompt_username)" config_account
+    read -p "$(t prompt_password)" config_password
     /usr/local/s-ui/sui admin -username ${config_account} -password ${config_password}
     before_show_menu
 }
@@ -154,7 +285,7 @@ view_admin() {
 }
 
 reset_setting() {
-    confirm "Are you sure you want to reset settings to default ?" "n"
+    confirm "$(t confirm_reset_panel)" "n"
     if [[ $? == 0 ]]; then
         /usr/local/s-ui/sui setting -reset
     fi
@@ -162,17 +293,17 @@ reset_setting() {
 }
 
 set_setting() {
-    echo -e "Enter the ${yellow}panel port${plain} (leave blank for existing/default value):"
+    echo -e "$(t prompt_panel_port)"
     read config_port
-    echo -e "Enter the ${yellow}panel path${plain} (leave blank for existing/default value):"
+    echo -e "$(t prompt_panel_path)"
     read config_path
 
-    echo -e "Enter the ${yellow}subscription port${plain} (leave blank for existing/default value):"
+    echo -e "$(t prompt_sub_port)"
     read config_subPort
-    echo -e "Enter the ${yellow}subscription path${plain} (leave blank for existing/default value):" 
+    echo -e "$(t prompt_sub_path)"
     read config_subPath
 
-    echo -e "${yellow}Initializing, please wait...${plain}"
+    echo -e "${yellow}$(t msg_initializing)${plain}"
     params=""
     [ -z "$config_port" ] || params="$params -port $config_port"
     [ -z "$config_path" ] || params="$params -path $config_path"
@@ -194,7 +325,7 @@ view_uri() {
         LOGE "Get current uri error"
         before_show_menu
     fi
-    LOGI "You may access the Panel with following URL(s):"
+    LOGI "$(t msg_panel_uri)"
     echo -e "${green}${info}${plain}"
 }
 
@@ -295,13 +426,13 @@ show_log() {
 }
 
 update_shell() {
-    wget -O /usr/bin/s-ui -N --no-check-certificate https://github.com/shenjar/s2-ui/raw/main/s-ui.sh
+    wget -O /usr/bin/s2-ui -N --no-check-certificate https://github.com/shenjar/s2-ui/raw/main/s-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "Failed to download script, Please check whether the machine can connect Github"
         before_show_menu
     else
-        chmod +x /usr/bin/s-ui
+        chmod +x /usr/bin/s2-ui
         LOGI "Upgrade script succeeded, Please rerun the script" && exit 0
     fi
 }
@@ -331,7 +462,7 @@ check_uninstall() {
     check_status s-ui
     if [[ $? != 2 ]]; then
         echo ""
-        LOGE "Panel is already installed, Please do not reinstall"
+        LOGE "$(t err_already_inst)"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -345,7 +476,7 @@ check_install() {
     check_status s-ui
     if [[ $? == 2 ]]; then
         echo ""
-        LOGE "Please install the panel first"
+        LOGE "$(t err_install_first)"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -359,15 +490,15 @@ show_status() {
     check_status $1
     case $? in
     0)
-        echo -e "${1} state: ${green}Running${plain}"
+        echo -e "${1} state: ${green}$(t state_running)${plain}"
         show_enable_status $1
         ;;
     1)
-        echo -e "${1} state: ${yellow}Not Running${plain}"
+        echo -e "${1} state: ${yellow}$(t state_stopped)${plain}"
         show_enable_status $1
         ;;
     2)
-        echo -e "${1} state: ${red}Not Installed${plain}"
+        echo -e "${1} state: ${red}$(t state_not_inst)${plain}"
         ;;
     esac
 }
@@ -375,9 +506,9 @@ show_status() {
 show_enable_status() {
     check_enabled $1
     if [[ $? == 0 ]]; then
-        echo -e "Start ${1} automatically: ${green}Yes${plain}"
+        echo -e "$(t autostart_label) ${1}: ${green}$(t autostart_yes)${plain}"
     else
-        echo -e "Start ${1} automatically: ${red}No${plain}"
+        echo -e "$(t autostart_label) ${1}: ${red}$(t autostart_no)${plain}"
     fi
 }
 
@@ -772,58 +903,83 @@ generate_self_signed_cert() {
 }
 
 show_usage() {
-    echo -e "S-UI Control Menu Usage"
+    echo -e "S2-UI Control Menu Usage"
     echo -e "------------------------------------------"
-    echo -e "SUBCOMMANDS:" 
-    echo -e "s-ui              - Admin Management Script"
-    echo -e "s-ui start        - Start s-ui"
-    echo -e "s-ui stop         - Stop s-ui"
-    echo -e "s-ui restart      - Restart s-ui"
-    echo -e "s-ui status       - Current Status of s-ui"
-    echo -e "s-ui enable       - Enable Autostart on OS Startup"
-    echo -e "s-ui disable      - Disable Autostart on OS Startup"
-    echo -e "s-ui log          - Check s-ui Logs"
-    echo -e "s-ui update       - Update"
-    echo -e "s-ui install      - Install"
-    echo -e "s-ui uninstall    - Uninstall"
-    echo -e "s-ui help         - Control Menu Usage"
+    echo -e "SUBCOMMANDS:"
+    echo -e "s2-ui              - Admin Management Script"
+    echo -e "s2-ui start        - Start s-ui"
+    echo -e "s2-ui stop         - Stop s-ui"
+    echo -e "s2-ui restart      - Restart s-ui"
+    echo -e "s2-ui status       - Current Status of s-ui"
+    echo -e "s2-ui enable       - Enable Autostart on OS Startup"
+    echo -e "s2-ui disable      - Disable Autostart on OS Startup"
+    echo -e "s2-ui log          - Check s-ui Logs"
+    echo -e "s2-ui update       - Update"
+    echo -e "s2-ui install      - Install"
+    echo -e "s2-ui uninstall    - Uninstall"
+    echo -e "s2-ui help         - Control Menu Usage"
     echo -e "------------------------------------------"
+}
+
+switch_language() {
+    echo -e "$(t msg_lang_select)"
+    echo -e "${green}\t$(t msg_lang_en)${plain}"
+    echo -e "${green}\t$(t msg_lang_zh)${plain}"
+    read -p "Select [1-2]: " lang_choice
+    case "$lang_choice" in
+    1)
+        LANG_PREF="en"
+        echo "en" > ~/.s2ui_lang
+        LOGI "$(t msg_lang_saved)"
+        ;;
+    2)
+        LANG_PREF="zh"
+        echo "zh" > ~/.s2ui_lang
+        LOGI "$(t msg_lang_saved)"
+        ;;
+    *)
+        echo "Invalid choice"
+        ;;
+    esac
+    show_menu
 }
 
 show_menu() {
   echo -e "
-  ${green}S-UI Admin Management Script ${plain}
+  ${green}$(t menu_title)${plain}
 ————————————————————————————————
-  ${green}0.${plain} Exit
+  ${green}0.${plain} $(t opt_exit)
 ————————————————————————————————
-  ${green}1.${plain} Install
-  ${green}2.${plain} Update
-  ${green}3.${plain} Custom Version
-  ${green}4.${plain} Uninstall
+  ${green}1.${plain} $(t opt_install)
+  ${green}2.${plain} $(t opt_update)
+  ${green}3.${plain} $(t opt_custom_ver)
+  ${green}4.${plain} $(t opt_uninstall)
 ————————————————————————————————
-  ${green}5.${plain} Reset admin credentials to default
-  ${green}6.${plain} Set admin credentials
-  ${green}7.${plain} View admin credentials
+  ${green}5.${plain} $(t opt_reset_admin)
+  ${green}6.${plain} $(t opt_set_admin)
+  ${green}7.${plain} $(t opt_view_admin)
 ————————————————————————————————
-  ${green}8.${plain} Reset Panel Settings
-  ${green}9.${plain} Set Panel settings
-  ${green}10.${plain} View Panel Settings
+  ${green}8.${plain} $(t opt_reset_panel)
+  ${green}9.${plain} $(t opt_set_panel)
+  ${green}10.${plain} $(t opt_view_panel)
 ————————————————————————————————
-  ${green}11.${plain} S-UI Start
-  ${green}12.${plain} S-UI Stop
-  ${green}13.${plain} S-UI Restart
-  ${green}14.${plain} S-UI Check State
-  ${green}15.${plain} S-UI Check Logs
-  ${green}16.${plain} S-UI Enable Autostart
-  ${green}17.${plain} S-UI Disable Autostart
+  ${green}11.${plain} $(t opt_start)
+  ${green}12.${plain} $(t opt_stop)
+  ${green}13.${plain} $(t opt_restart)
+  ${green}14.${plain} $(t opt_status)
+  ${green}15.${plain} $(t opt_log)
+  ${green}16.${plain} $(t opt_enable)
+  ${green}17.${plain} $(t opt_disable)
 ————————————————————————————————
-  ${green}18.${plain} Enable or Disable BBR
-  ${green}19.${plain} SSL Certificate Management
-  ${green}20.${plain} Cloudflare SSL Certificate
+  ${green}18.${plain} $(t opt_bbr)
+  ${green}19.${plain} $(t opt_ssl)
+  ${green}20.${plain} $(t opt_cf_ssl)
+————————————————————————————————
+  ${green}21.${plain} $(t opt_lang)
 ————————————————————————————————
  "
     show_status s-ui
-    echo && read -p "Please enter your selection [0-20]: " num
+    echo && read -p "$(t prompt_select)" num
 
     case "${num}" in
     0)
@@ -889,8 +1045,11 @@ show_menu() {
     20)
         ssl_cert_issue_CF
         ;;
+    21)
+        switch_language
+        ;;
     *)
-        LOGE "Please enter the correct number [0-20]"
+        LOGE "$(t err_invalid_num)"
         ;;
     esac
 }
