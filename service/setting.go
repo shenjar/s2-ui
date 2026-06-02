@@ -48,8 +48,6 @@ var defaultValueMap = map[string]string{
 	"secret":        common.Random(32),
 	"webCertFile":   "",
 	"webKeyFile":    "",
-	"webCertMode":   "",
-	"webAcmeEmail":  "",
 	"webPath":       "/app/",
 	"webURI":        "",
 	"sessionMaxAge": "0",
@@ -61,8 +59,6 @@ var defaultValueMap = map[string]string{
 	"subDomain":     "",
 	"subCertFile":   "",
 	"subKeyFile":    "",
-	"subCertMode":   "",
-	"subAcmeEmail":  "",
 	"subUpdates":    "12",
 	"subEncode":     "true",
 	"subShowInfo":   "false",
@@ -203,14 +199,6 @@ func (s *SettingService) GetKeyFile() (string, error) {
 	return s.getString("webKeyFile")
 }
 
-func (s *SettingService) GetWebCertMode() (string, error) {
-	return s.getString("webCertMode")
-}
-
-func (s *SettingService) GetWebAcmeEmail() (string, error) {
-	return s.getString("webAcmeEmail")
-}
-
 func (s *SettingService) GetWebPath() (string, error) {
 	webPath, err := s.getString("webPath")
 	if err != nil {
@@ -319,14 +307,6 @@ func (s *SettingService) GetSubKeyFile() (string, error) {
 	return s.getString("subKeyFile")
 }
 
-func (s *SettingService) GetSubCertMode() (string, error) {
-	return s.getString("subCertMode")
-}
-
-func (s *SettingService) GetSubAcmeEmail() (string, error) {
-	return s.getString("subAcmeEmail")
-}
-
 func (s *SettingService) GetSubUpdates() (int, error) {
 	return s.getInt("subUpdates")
 }
@@ -353,8 +333,7 @@ func (s *SettingService) GetFinalSubURI(host string) (string, error) {
 		return SubURI, nil
 	}
 	protocol := "http"
-	if (*allSetting)["subCertMode"] == "acme" ||
-		((*allSetting)["subKeyFile"] != "" && (*allSetting)["subCertFile"] != "") {
+	if (*allSetting)["subKeyFile"] != "" && (*allSetting)["subCertFile"] != "" {
 		protocol = "https"
 	}
 	if (*allSetting)["subDomain"] != "" {
@@ -390,15 +369,12 @@ func (s *SettingService) Save(tx *gorm.DB, data json.RawMessage) error {
 	if err != nil {
 		return err
 	}
-	// When ACME auto-cert is enabled the manual cert/key paths are unused (and
-	// may be stale/deleted), so skip their file-existence check below.
-	webAcme := settings["webCertMode"] == "acme"
-	subAcme := settings["subCertMode"] == "acme"
 	for key, obj := range settings {
 		// Secure file existence check
-		if obj != "" &&
-			(((key == "webCertFile" || key == "webKeyFile") && !webAcme) ||
-				((key == "subCertFile" || key == "subKeyFile") && !subAcme)) {
+		if obj != "" && (key == "webCertFile" ||
+			key == "webKeyFile" ||
+			key == "subCertFile" ||
+			key == "subKeyFile") {
 			err = s.fileExists(obj)
 			if err != nil {
 				return common.NewError(" -> ", obj, " is not exists")

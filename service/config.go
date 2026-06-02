@@ -6,12 +6,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/shenjar/s2-ui/config"
 	"github.com/shenjar/s2-ui/core"
 	"github.com/shenjar/s2-ui/database"
 	"github.com/shenjar/s2-ui/database/model"
 	"github.com/shenjar/s2-ui/logger"
-	"github.com/shenjar/s2-ui/network"
 	"github.com/shenjar/s2-ui/util/common"
 )
 
@@ -175,18 +173,6 @@ func (s *ConfigService) StopCore() error {
 	}
 	logger.Info("sing-box stopped")
 	return nil
-}
-
-// TestAcme attempts to obtain a certificate for the domain right now, so the UI
-// can verify ACME actually works (domain resolves, port 80 reachable, etc.)
-// BEFORE the user commits the setting. On success the certificate is cached, so
-// the subsequent panel restart serves HTTPS without another challenge.
-func (s *ConfigService) TestAcme(domain, email string) error {
-	if domain == "" {
-		return common.NewError("domain is required for ACME")
-	}
-	_, err := network.ACMETLSConfig(domain, email, config.GetCertFolderPath())
-	return err
 }
 
 func (s *ConfigService) CheckOutbound(tag string, link string) core.CheckOutboundResult {

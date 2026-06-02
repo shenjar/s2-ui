@@ -96,32 +96,13 @@ func (s *Server) Start() (err error) {
 		return err
 	}
 
-	certMode, err := s.SettingService.GetSubCertMode()
-	if err != nil {
-		return err
-	}
 	listenAddr := net.JoinHostPort(listen, strconv.Itoa(port))
 	listener, err := net.Listen("tcp", listenAddr)
 	if err != nil {
 		return err
 	}
 
-	scheme := "http"
-	if certMode == "acme" {
-		// Auto-issue/renew via Let's Encrypt (HTTP-01); fall back to HTTP on
-		// any failure so a bad domain or blocked port 80 never breaks the sub server.
-		domain, _ := s.SettingService.GetSubDomain()
-		email, _ := s.SettingService.GetSubAcmeEmail()
-		if domain == "" {
-			logger.Warning("Sub ACME enabled but subDomain is empty; serving HTTP")
-		} else if tlsConfig, err := network.ACMETLSConfig(domain, email, config.GetCertFolderPath()); err != nil {
-			logger.Error("Sub ACME certificate error, falling back to HTTP:", err)
-		} else {
-			listener = network.NewAutoHttpsListener(listener)
-			listener = tls.NewListener(listener, tlsConfig)
-			scheme = "https (ACME)"
-		}
-	} else if certFile != "" || keyFile != "" {
+	if certFile != "" || keyFile != "" {
 		cert, err := tls.LoadX509KeyPair(certFile, keyFile)
 		if err != nil {
 			listener.Close()
@@ -132,10 +113,13 @@ func (s *Server) Start() (err error) {
 		}
 		listener = network.NewAutoHttpsListener(listener)
 		listener = tls.NewListener(listener, c)
-		scheme = "https"
 	}
 
-	logger.Info("Sub server run "+scheme+" on", listener.Addr())
+	if certFile != "" || keyFile != "" {
+		logger.Info("Sub server run https on", listener.Addr())
+	} else {
+		logger.Info("Sub server run http on", listener.Addr())
+	}
 	s.listener = listener
 
 	s.httpServer = &http.Server{

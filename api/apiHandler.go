@@ -50,8 +50,6 @@ func (a *APIHandler) postHandler(c *gin.Context) {
 		a.ApiService.LinkConvert(c)
 	case "subConvert":
 		a.ApiService.SubConvert(c)
-	case "testAcme":
-		a.ApiService.TestAcme(c)
 	case "importdb":
 		a.ApiService.ImportDb(c)
 	case "addToken":
