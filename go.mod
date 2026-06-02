@@ -12,7 +12,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/sagernet/sing v0.8.10
 	github.com/sagernet/sing-box v1.13.12
-	github.com/shirou/gopsutil/v4 v4.26.4
+	github.com/shirou/gopsutil/v4 v4.26.5
 	go.uber.org/zap v1.27.1
 	golang.zx2c4.com/wireguard/wgctrl v0.0.0-20241231184526-a9ab2273dd10
 	gopkg.in/yaml.v3 v3.0.1
