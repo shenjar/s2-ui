@@ -164,12 +164,32 @@ func (s *Server) Start() (err error) {
 	if err != nil {
 		return err
 	}
+	certMode, err := s.settingService.GetWebCertMode()
+	if err != nil {
+		return err
+	}
 	listenAddr := net.JoinHostPort(listen, strconv.Itoa(port))
 	listener, err := net.Listen("tcp", listenAddr)
 	if err != nil {
 		return err
 	}
-	if certFile != "" || keyFile != "" {
+	scheme := "http"
+	if certMode == "acme" {
+		// Auto-issue/renew via Let's Encrypt (HTTP-01). On any failure we fall
+		// back to plain HTTP so a misconfigured domain or blocked port 80 can
+		// never lock the operator out of the panel.
+		domain, _ := s.settingService.GetWebDomain()
+		email, _ := s.settingService.GetWebAcmeEmail()
+		if domain == "" {
+			logger.Warning("web ACME enabled but webDomain is empty; serving HTTP")
+		} else if tlsConfig, err := network.ACMETLSConfig(s.ctx, domain, email, config.GetCertFolderPath()); err != nil {
+			logger.Error("web ACME certificate error, falling back to HTTP:", err)
+		} else {
+			listener = network.NewAutoHttpsListener(listener)
+			listener = tls.NewListener(listener, tlsConfig)
+			scheme = "https (ACME)"
+		}
+	} else if certFile != "" || keyFile != "" {
 		cert, err := tls.LoadX509KeyPair(certFile, keyFile)
 		if err != nil {
 			listener.Close()
@@ -180,13 +200,10 @@ func (s *Server) Start() (err error) {
 		}
 		listener = network.NewAutoHttpsListener(listener)
 		listener = tls.NewListener(listener, c)
+		scheme = "https"
 	}
 
-	if certFile != "" || keyFile != "" {
-		logger.Info("web server run https on", listener.Addr())
-	} else {
-		logger.Info("web server run http on", listener.Addr())
-	}
+	logger.Info("web server run "+scheme+" on", listener.Addr())
 	s.listener = listener
 
 	s.httpServer = &http.Server{
