@@ -61,7 +61,7 @@ t() {
             prompt_sub_port)   echo "输入订阅端口（留空保留现有/默认值）：" ;;
             prompt_sub_path)   echo "输入订阅路径（留空保留现有/默认值）：" ;;
             msg_initializing)  echo "初始化中，请稍候..." ;;
-            msg_uninstalled)   echo "卸载成功，如需删除脚本，退出后执行" ;;
+            msg_uninstalled)   echo "卸载成功，如需删除脚本，退出后执行 rm /usr/local/s-ui -f 命令。" ;;
             msg_panel_uri)     echo "可通过以下地址访问面板：" ;;
             msg_lang_select)   echo "选择语言 / Select language:" ;;
             msg_lang_en)       echo "1. English" ;;
