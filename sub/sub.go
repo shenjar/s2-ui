@@ -114,7 +114,7 @@ func (s *Server) Start() (err error) {
 		email, _ := s.SettingService.GetSubAcmeEmail()
 		if domain == "" {
 			logger.Warning("Sub ACME enabled but subDomain is empty; serving HTTP")
-		} else if tlsConfig, err := network.ACMETLSConfig(s.ctx, domain, email, config.GetCertFolderPath()); err != nil {
+		} else if tlsConfig, err := network.ACMETLSConfig(domain, email, config.GetCertFolderPath()); err != nil {
 			logger.Error("Sub ACME certificate error, falling back to HTTP:", err)
 		} else {
 			listener = network.NewAutoHttpsListener(listener)
