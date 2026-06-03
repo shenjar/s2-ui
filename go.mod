@@ -1,4 +1,4 @@
-module github.com/shenjar/s2-ui
+module github.com/shenaba/s2-ui
 
 go 1.26.3
 

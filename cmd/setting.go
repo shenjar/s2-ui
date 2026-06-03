@@ -8,9 +8,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/shenjar/s2-ui/config"
-	"github.com/shenjar/s2-ui/database"
-	"github.com/shenjar/s2-ui/service"
+	"github.com/shenaba/s2-ui/config"
+	"github.com/shenaba/s2-ui/database"
+	"github.com/shenaba/s2-ui/service"
 
 	"github.com/shirou/gopsutil/v4/net"
 )

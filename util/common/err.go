@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/shenjar/s2-ui/logger"
+	"github.com/shenaba/s2-ui/logger"
 )
 
 func NewErrorf(format string, a ...interface{}) error {

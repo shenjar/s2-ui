@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/shenjar/s2-ui/database"
-	"github.com/shenjar/s2-ui/database/model"
-	"github.com/shenjar/s2-ui/util/common"
+	"github.com/shenaba/s2-ui/database"
+	"github.com/shenaba/s2-ui/database/model"
+	"github.com/shenaba/s2-ui/util/common"
 
 	"gorm.io/gorm"
 )

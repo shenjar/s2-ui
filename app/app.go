@@ -3,14 +3,14 @@ package app
 import (
 	"log"
 
-	"github.com/shenjar/s2-ui/config"
-	"github.com/shenjar/s2-ui/core"
-	"github.com/shenjar/s2-ui/cronjob"
-	"github.com/shenjar/s2-ui/database"
-	"github.com/shenjar/s2-ui/logger"
-	"github.com/shenjar/s2-ui/service"
-	"github.com/shenjar/s2-ui/sub"
-	"github.com/shenjar/s2-ui/web"
+	"github.com/shenaba/s2-ui/config"
+	"github.com/shenaba/s2-ui/core"
+	"github.com/shenaba/s2-ui/cronjob"
+	"github.com/shenaba/s2-ui/database"
+	"github.com/shenaba/s2-ui/logger"
+	"github.com/shenaba/s2-ui/service"
+	"github.com/shenaba/s2-ui/sub"
+	"github.com/shenaba/s2-ui/web"
 
 	"github.com/op/go-logging"
 )
