@@ -1,9 +1,9 @@
 package cronjob
 
 import (
-	"github.com/shenjar/s2-ui/database"
-	"github.com/shenjar/s2-ui/logger"
-	"github.com/shenjar/s2-ui/service"
+	"github.com/shenaba/s2-ui/database"
+	"github.com/shenaba/s2-ui/logger"
+	"github.com/shenaba/s2-ui/service"
 )
 
 type DepleteJob struct {

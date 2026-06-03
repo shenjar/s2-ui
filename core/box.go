@@ -7,7 +7,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/shenjar/s2-ui/util/common"
+	"github.com/shenaba/s2-ui/util/common"
 
 	"github.com/sagernet/sing-box/adapter"
 	"github.com/sagernet/sing-box/adapter/endpoint"

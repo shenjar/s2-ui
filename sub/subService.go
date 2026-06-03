@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shenjar/s2-ui/database"
-	"github.com/shenjar/s2-ui/database/model"
-	"github.com/shenjar/s2-ui/service"
-	"github.com/shenjar/s2-ui/util"
+	"github.com/shenaba/s2-ui/database"
+	"github.com/shenaba/s2-ui/database/model"
+	"github.com/shenaba/s2-ui/service"
+	"github.com/shenaba/s2-ui/util"
 )
 
 type SubService struct {

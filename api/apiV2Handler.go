@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/shenjar/s2-ui/logger"
-	"github.com/shenjar/s2-ui/util/common"
+	"github.com/shenaba/s2-ui/logger"
+	"github.com/shenaba/s2-ui/util/common"
 
 	"github.com/gin-gonic/gin"
 )

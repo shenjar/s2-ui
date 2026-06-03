@@ -3,8 +3,8 @@ package service
 import (
 	"time"
 
-	"github.com/shenjar/s2-ui/database"
-	"github.com/shenjar/s2-ui/database/model"
+	"github.com/shenaba/s2-ui/database"
+	"github.com/shenaba/s2-ui/database/model"
 
 	"gorm.io/gorm"
 )

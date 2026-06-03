@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/shenjar/s2-ui/database/model"
+	"github.com/shenaba/s2-ui/database/model"
 
 	"github.com/sagernet/sing-box/adapter"
 	"github.com/sagernet/sing/common/atomic"
