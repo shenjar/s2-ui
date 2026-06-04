@@ -3,7 +3,7 @@ package util
 import (
 	"fmt"
 
-	"github.com/shenaba/s2-ui/database/model"
+	"github.com/shenaba/2s-ui/database/model"
 )
 
 func GetHeaders(client *model.Client, updateInterval int) []string {

@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/shenaba/s2-ui/logger"
+	"github.com/shenaba/2s-ui/logger"
 
 	"github.com/caddyserver/certmagic"
 )

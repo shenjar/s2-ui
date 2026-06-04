@@ -3,7 +3,7 @@ package core
 import (
 	"context"
 
-	"github.com/shenaba/s2-ui/logger"
+	"github.com/shenaba/2s-ui/logger"
 
 	sb "github.com/sagernet/sing-box"
 	"github.com/sagernet/sing-box/adapter"

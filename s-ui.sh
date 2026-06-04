@@ -11,7 +11,7 @@ t() {
     local key=$1
     if [[ $LANG_PREF == "zh" ]]; then
         case $key in
-            menu_title)        echo "S2-UI 管理脚本" ;;
+            menu_title)        echo "2S-UI 管理脚本" ;;
             opt_exit)          echo "退出" ;;
             opt_install)       echo "安装" ;;
             opt_update)        echo "更新" ;;
@@ -23,13 +23,13 @@ t() {
             opt_reset_panel)   echo "重置面板设置" ;;
             opt_set_panel)     echo "设置面板参数" ;;
             opt_view_panel)    echo "查看面板设置" ;;
-            opt_start)         echo "S2-UI 启动" ;;
-            opt_stop)          echo "S2-UI 停止" ;;
-            opt_restart)       echo "S2-UI 重启" ;;
-            opt_status)        echo "S2-UI 查看状态" ;;
-            opt_log)           echo "S2-UI 查看日志" ;;
-            opt_enable)        echo "S2-UI 开启开机自启" ;;
-            opt_disable)       echo "S2-UI 关闭开机自启" ;;
+            opt_start)         echo "2S-UI 启动" ;;
+            opt_stop)          echo "2S-UI 停止" ;;
+            opt_restart)       echo "2S-UI 重启" ;;
+            opt_status)        echo "2S-UI 查看状态" ;;
+            opt_log)           echo "2S-UI 查看日志" ;;
+            opt_enable)        echo "2S-UI 开启开机自启" ;;
+            opt_disable)       echo "2S-UI 关闭开机自启" ;;
             opt_bbr)           echo "开启或关闭 BBR" ;;
             opt_ssl)           echo "SSL 证书管理" ;;
             opt_cf_ssl)        echo "Cloudflare SSL 证书" ;;
@@ -73,7 +73,7 @@ t() {
         esac
     else
         case $key in
-            menu_title)        echo "S2-UI Admin Management Script" ;;
+            menu_title)        echo "2S-UI Admin Management Script" ;;
             opt_exit)          echo "Exit" ;;
             opt_install)       echo "Install" ;;
             opt_update)        echo "Update" ;;
@@ -85,13 +85,13 @@ t() {
             opt_reset_panel)   echo "Reset Panel Settings" ;;
             opt_set_panel)     echo "Set Panel settings" ;;
             opt_view_panel)    echo "View Panel Settings" ;;
-            opt_start)         echo "S2-UI Start" ;;
-            opt_stop)          echo "S2-UI Stop" ;;
-            opt_restart)       echo "S2-UI Restart" ;;
-            opt_status)        echo "S2-UI Check State" ;;
-            opt_log)           echo "S2-UI Check Logs" ;;
-            opt_enable)        echo "S2-UI Enable Autostart" ;;
-            opt_disable)       echo "S2-UI Disable Autostart" ;;
+            opt_start)         echo "2S-UI Start" ;;
+            opt_stop)          echo "2S-UI Stop" ;;
+            opt_restart)       echo "2S-UI Restart" ;;
+            opt_status)        echo "2S-UI Check State" ;;
+            opt_log)           echo "2S-UI Check Logs" ;;
+            opt_enable)        echo "2S-UI Enable Autostart" ;;
+            opt_disable)       echo "2S-UI Disable Autostart" ;;
             opt_bbr)           echo "Enable or Disable BBR" ;;
             opt_ssl)           echo "SSL Certificate Management" ;;
             opt_cf_ssl)        echo "Cloudflare SSL Certificate" ;;
@@ -194,7 +194,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/shenaba/s2-ui/main/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/shenaba/2s-ui/main/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -213,7 +213,7 @@ update() {
         fi
         return 0
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/shenaba/s2-ui/main/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/shenaba/2s-ui/main/install.sh)
     if [[ $? == 0 ]]; then
         LOGI "Update is complete, Panel has automatically restarted "
         exit 0
@@ -229,7 +229,7 @@ custom_version() {
     exit 1
     fi
 
-    download_link="https://raw.githubusercontent.com/shenaba/s2-ui/main/install.sh"
+    download_link="https://raw.githubusercontent.com/shenaba/2s-ui/main/install.sh"
 
     install_command="bash <(curl -Ls $download_link) $panel_version"
 
@@ -252,6 +252,8 @@ uninstall() {
     systemctl reset-failed
     rm /etc/s-ui/ -rf
     rm /usr/local/s-ui/ -rf
+    rm /usr/bin/2s-ui -f
+    rm /usr/bin/s-ui -f
 
     echo ""
     echo -e "$(t msg_uninstalled) ${green}rm /usr/local/s-ui -f${plain} to delete it."
@@ -426,13 +428,14 @@ show_log() {
 }
 
 update_shell() {
-    wget -O /usr/bin/s2-ui -N --no-check-certificate https://github.com/shenaba/s2-ui/raw/main/s-ui.sh
+    wget -O /usr/bin/2s-ui -N --no-check-certificate https://github.com/shenaba/2s-ui/raw/main/s-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "Failed to download script, Please check whether the machine can connect Github"
         before_show_menu
     else
-        chmod +x /usr/bin/s2-ui
+        chmod +x /usr/bin/2s-ui
+        cp /usr/bin/2s-ui /usr/bin/s-ui
         LOGI "Upgrade script succeeded, Please rerun the script" && exit 0
     fi
 }
@@ -903,21 +906,21 @@ generate_self_signed_cert() {
 }
 
 show_usage() {
-    echo -e "S2-UI Control Menu Usage"
+    echo -e "2S-UI Control Menu Usage"
     echo -e "------------------------------------------"
     echo -e "SUBCOMMANDS:"
-    echo -e "s2-ui              - Admin Management Script"
-    echo -e "s2-ui start        - Start s-ui"
-    echo -e "s2-ui stop         - Stop s-ui"
-    echo -e "s2-ui restart      - Restart s-ui"
-    echo -e "s2-ui status       - Current Status of s-ui"
-    echo -e "s2-ui enable       - Enable Autostart on OS Startup"
-    echo -e "s2-ui disable      - Disable Autostart on OS Startup"
-    echo -e "s2-ui log          - Check s-ui Logs"
-    echo -e "s2-ui update       - Update"
-    echo -e "s2-ui install      - Install"
-    echo -e "s2-ui uninstall    - Uninstall"
-    echo -e "s2-ui help         - Control Menu Usage"
+    echo -e "2s-ui              - Admin Management Script"
+    echo -e "2s-ui start        - Start s-ui"
+    echo -e "2s-ui stop         - Stop s-ui"
+    echo -e "2s-ui restart      - Restart s-ui"
+    echo -e "2s-ui status       - Current Status of s-ui"
+    echo -e "2s-ui enable       - Enable Autostart on OS Startup"
+    echo -e "2s-ui disable      - Disable Autostart on OS Startup"
+    echo -e "2s-ui log          - Check s-ui Logs"
+    echo -e "2s-ui update       - Update"
+    echo -e "2s-ui install      - Install"
+    echo -e "2s-ui uninstall    - Uninstall"
+    echo -e "2s-ui help         - Control Menu Usage"
     echo -e "------------------------------------------"
 }
 

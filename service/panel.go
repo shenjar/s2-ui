@@ -6,7 +6,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/shenaba/s2-ui/logger"
+	"github.com/shenaba/2s-ui/logger"
 )
 
 type PanelService struct {

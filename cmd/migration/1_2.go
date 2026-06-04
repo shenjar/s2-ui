@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/shenaba/s2-ui/database/model"
+	"github.com/shenaba/2s-ui/database/model"
 
 	"gorm.io/gorm"
 )

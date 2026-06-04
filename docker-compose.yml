@@ -1,7 +1,7 @@
 ---
 services:
   s-ui:
-    image: shenjar/s2-ui
+    image: ghcr.io/shenaba/2s-ui
     container_name: s-ui
     hostname: "s-ui"
     volumes:
@@ -19,4 +19,3 @@ services:
 networks:
   s-ui:
     driver: bridge
-  

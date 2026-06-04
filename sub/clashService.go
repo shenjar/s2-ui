@@ -3,9 +3,9 @@ package sub
 import (
 	"strings"
 
-	"github.com/shenaba/s2-ui/logger"
-	"github.com/shenaba/s2-ui/service"
-	"github.com/shenaba/s2-ui/util"
+	"github.com/shenaba/2s-ui/logger"
+	"github.com/shenaba/2s-ui/service"
+	"github.com/shenaba/2s-ui/util"
 
 	"gopkg.in/yaml.v3"
 )

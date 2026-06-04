@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/shenaba/s2-ui/logger"
+	"github.com/shenaba/2s-ui/logger"
 
 	"github.com/gin-gonic/gin"
 )

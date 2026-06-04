@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shenaba/s2-ui/config"
-	"github.com/shenaba/s2-ui/database/model"
+	"github.com/shenaba/2s-ui/config"
+	"github.com/shenaba/2s-ui/database/model"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

@@ -13,12 +13,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shenaba/s2-ui/api"
-	"github.com/shenaba/s2-ui/config"
-	"github.com/shenaba/s2-ui/logger"
-	"github.com/shenaba/s2-ui/middleware"
-	"github.com/shenaba/s2-ui/network"
-	"github.com/shenaba/s2-ui/service"
+	"github.com/shenaba/2s-ui/api"
+	"github.com/shenaba/2s-ui/config"
+	"github.com/shenaba/2s-ui/logger"
+	"github.com/shenaba/2s-ui/middleware"
+	"github.com/shenaba/2s-ui/network"
+	"github.com/shenaba/2s-ui/service"
 
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-contrib/sessions"
