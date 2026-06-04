@@ -252,7 +252,6 @@ uninstall() {
     systemctl reset-failed
     rm /etc/s-ui/ -rf
     rm /usr/local/s-ui/ -rf
-    rm /usr/bin/2s-ui -f
     rm /usr/bin/s-ui -f
 
     echo ""
@@ -428,14 +427,13 @@ show_log() {
 }
 
 update_shell() {
-    wget -O /usr/bin/2s-ui -N --no-check-certificate https://github.com/shenaba/2s-ui/raw/main/s-ui.sh
+    wget -O /usr/bin/s-ui -N --no-check-certificate https://github.com/shenaba/2s-ui/raw/main/s-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "Failed to download script, Please check whether the machine can connect Github"
         before_show_menu
     else
-        chmod +x /usr/bin/2s-ui
-        cp /usr/bin/2s-ui /usr/bin/s-ui
+        chmod +x /usr/bin/s-ui
         LOGI "Upgrade script succeeded, Please rerun the script" && exit 0
     fi
 }
@@ -909,18 +907,18 @@ show_usage() {
     echo -e "2S-UI Control Menu Usage"
     echo -e "------------------------------------------"
     echo -e "SUBCOMMANDS:"
-    echo -e "2s-ui              - Admin Management Script"
-    echo -e "2s-ui start        - Start s-ui"
-    echo -e "2s-ui stop         - Stop s-ui"
-    echo -e "2s-ui restart      - Restart s-ui"
-    echo -e "2s-ui status       - Current Status of s-ui"
-    echo -e "2s-ui enable       - Enable Autostart on OS Startup"
-    echo -e "2s-ui disable      - Disable Autostart on OS Startup"
-    echo -e "2s-ui log          - Check s-ui Logs"
-    echo -e "2s-ui update       - Update"
-    echo -e "2s-ui install      - Install"
-    echo -e "2s-ui uninstall    - Uninstall"
-    echo -e "2s-ui help         - Control Menu Usage"
+    echo -e "s-ui              - Admin Management Script"
+    echo -e "s-ui start        - Start s-ui"
+    echo -e "s-ui stop         - Stop s-ui"
+    echo -e "s-ui restart      - Restart s-ui"
+    echo -e "s-ui status       - Current Status of s-ui"
+    echo -e "s-ui enable       - Enable Autostart on OS Startup"
+    echo -e "s-ui disable      - Disable Autostart on OS Startup"
+    echo -e "s-ui log          - Check s-ui Logs"
+    echo -e "s-ui update       - Update"
+    echo -e "s-ui install      - Install"
+    echo -e "s-ui uninstall    - Uninstall"
+    echo -e "s-ui help         - Control Menu Usage"
     echo -e "------------------------------------------"
 }
 

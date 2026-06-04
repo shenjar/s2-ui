@@ -79,7 +79,7 @@ VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shenaba/2s-ui
 ### Linux/macOS
 1. 根据你的系统和架构，从 GitHub 下载最新版本：[https://github.com/shenaba/2s-ui/releases/latest](https://github.com/shenaba/2s-ui/releases/latest)
 2. **可选：** 获取最新的 `s-ui.sh`：[https://raw.githubusercontent.com/shenaba/2s-ui/main/s-ui.sh](https://raw.githubusercontent.com/shenaba/2s-ui/main/s-ui.sh)
-3. **可选：** 将 `s-ui.sh` 复制到 `/usr/bin/2s-ui`，并执行 `chmod +x /usr/bin/2s-ui`
+3. **可选：** 将 `s-ui.sh` 复制到 `/usr/bin/s-ui`，并执行 `chmod +x /usr/bin/s-ui`
 4. 解压 `s-ui` 的 tar.gz 文件到你选择的目录，并进入解压目录
 5. 将 `*.service` 文件复制到 `/etc/systemd/system/`，并执行 `systemctl daemon-reload`
 6. 启用自启动并启动 2S-UI 服务：`systemctl enable s-ui --now`
@@ -104,7 +104,6 @@ rm -f /etc/systemd/system/sing-box.service
 systemctl daemon-reload
 
 rm -fr /usr/local/s-ui
-rm /usr/bin/2s-ui
 rm /usr/bin/s-ui
 ```
 
