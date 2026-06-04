@@ -79,7 +79,7 @@ VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shenaba/2s-ui
 ### Linux/macOS
 1. Get the latest version of 2S-UI based on your OS/Architecture from GitHub: [https://github.com/shenaba/2s-ui/releases/latest](https://github.com/shenaba/2s-ui/releases/latest)
 2. **OPTIONAL** Get the latest version of `s-ui.sh` [https://raw.githubusercontent.com/shenaba/2s-ui/main/s-ui.sh](https://raw.githubusercontent.com/shenaba/2s-ui/main/s-ui.sh)
-3. **OPTIONAL** Copy `s-ui.sh` to `/usr/bin/2s-ui` and run `chmod +x /usr/bin/2s-ui`.
+3. **OPTIONAL** Copy `s-ui.sh` to `/usr/bin/s-ui` and run `chmod +x /usr/bin/s-ui`.
 4. Extract s-ui tar.gz file to a directory of your choice and navigate to the directory where you extracted the tar.gz file.
 5. Copy *.service files to /etc/systemd/system/ and run `systemctl daemon-reload`.
 6. Enable autostart and start 2S-UI service using `systemctl enable s-ui --now`
@@ -104,7 +104,6 @@ rm -f /etc/systemd/system/sing-box.service
 systemctl daemon-reload
 
 rm -fr /usr/local/s-ui
-rm /usr/bin/2s-ui
 rm /usr/bin/s-ui
 ```
 

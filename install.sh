@@ -108,10 +108,10 @@ config_after_install() {
             echo -e "${green}username:${usernameTemp}${plain}"
             echo -e "${green}password:${passwordTemp}${plain}"
             echo -e "###############################################"
-            echo -e "${red}if you forgot your login info,you can type ${green}2s-ui${red} for configuration menu${plain}"
+            echo -e "${red}if you forgot your login info,you can type ${green}s-ui${red} for configuration menu${plain}"
             /usr/local/s-ui/sui admin -username ${usernameTemp} -password ${passwordTemp}
         else
-            echo -e "${red} this is your upgrade,will keep old settings,if you forgot your login info,you can type ${green}2s-ui${red} for configuration menu${plain}"
+            echo -e "${red} this is your upgrade,will keep old settings,if you forgot your login info,you can type ${green}s-ui${red} for configuration menu${plain}"
         fi
     fi
 }
@@ -165,7 +165,6 @@ install_s-ui() {
     rm s-ui-linux-$(arch).tar.gz -f
 
     chmod +x s-ui/sui s-ui/s-ui.sh
-    cp s-ui/s-ui.sh /usr/bin/2s-ui
     cp s-ui/s-ui.sh /usr/bin/s-ui
     cp -rf s-ui /usr/local/
     cp -f s-ui/*.service /etc/systemd/system/
@@ -181,7 +180,7 @@ install_s-ui() {
     /usr/local/s-ui/sui uri
     echo -e "${plain}"
     echo -e ""
-    2s-ui help
+    s-ui help
 }
 
 echo -e "${green}Executing...${plain}"
