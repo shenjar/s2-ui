@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/shenaba/s2-ui/config"
-	"github.com/shenaba/s2-ui/database"
-	"github.com/shenaba/s2-ui/database/model"
-	"github.com/shenaba/s2-ui/logger"
+	"github.com/shenaba/2s-ui/config"
+	"github.com/shenaba/2s-ui/database"
+	"github.com/shenaba/2s-ui/database/model"
+	"github.com/shenaba/2s-ui/logger"
 
 	"github.com/sagernet/sing-box/common/tls"
 	"github.com/shirou/gopsutil/v4/cpu"

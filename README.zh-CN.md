@@ -1,12 +1,12 @@
-# S2-UI
-**基于 SagerNet/Sing-Box 的高级 Web 面板**
+# 2S-UI
+**基于 SagerNet/Sing-Box 的多协议代理 Web 面板，支持订阅分发、流量监控与自托管部署。**
 
 [English](README.md)
 
-![](https://img.shields.io/github/v/release/shenaba/s2-ui.svg)
-![S2-UI Docker pull](https://img.shields.io/docker/pulls/shenjar/s2-ui.svg)
-[![Go Report Card](https://goreportcard.com/badge/github.com/shenaba/s2-ui)](https://goreportcard.com/report/github.com/shenaba/s2-ui)
-[![Downloads](https://img.shields.io/github/downloads/shenaba/s2-ui/total.svg)](https://img.shields.io/github/downloads/shenaba/s2-ui/total.svg)
+![](https://img.shields.io/github/v/release/shenaba/2s-ui.svg)
+[![Container image](https://img.shields.io/badge/container-ghcr.io%2Fshenaba%2F2s--ui-blue?logo=docker)](https://github.com/shenaba/2s-ui/actions/workflows/docker.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/shenaba/2s-ui)](https://goreportcard.com/report/github.com/shenaba/2s-ui)
+[![Downloads](https://img.shields.io/github/downloads/shenaba/2s-ui/total.svg)](https://img.shields.io/github/downloads/shenaba/2s-ui/total.svg)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 > **免责声明：** 本项目仅供个人学习与交流使用，请勿用于非法用途，请勿用于生产环境。
@@ -15,7 +15,7 @@
 
 **想参与贡献？** 请查看 [CONTRIBUTING.md](CONTRIBUTING.md)，了解开发环境、代码规范、测试和 Pull Request 流程。
 
-本项目基于 [alireza0/s-ui](https://github.com/alireza0/s-ui) 继续维护，感谢原作者及贡献者的开源工作。
+2S-UI 基于 [alireza0/s-ui](https://github.com/alireza0/s-ui) 继续维护，在保留原项目设计方向的基础上，持续更新 sing-box 支持、多协议能力、部署脚本与问题修复。感谢原作者及贡献者的开源工作。
 
 ## 快速概览
 | 功能 | 是否支持 |
@@ -38,13 +38,13 @@
 
 ## 截图
 
-!["Main"](https://github.com/shenaba/s2-ui-frontend/raw/main/media/main.png)
+!["Main"](https://github.com/shenaba/2s-ui-frontend/raw/main/media/main.png)
 
-[更多 UI 截图](https://github.com/shenaba/s2-ui-frontend/blob/main/screenshots.md)
+[更多 UI 截图](https://github.com/shenaba/2s-ui-frontend/blob/main/screenshots.md)
 
 ## API 文档
 
-[API Documentation Wiki](https://github.com/shenaba/s2-ui/wiki/API-Documentation)
+[API Documentation Wiki](https://github.com/shenaba/2s-ui/wiki/API-Documentation)
 
 ## 默认安装信息
 - 面板端口：2095
@@ -57,11 +57,11 @@
 
 ### Linux/macOS
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/shenaba/s2-ui/main/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/shenaba/2s-ui/main/install.sh)
 ```
 
 ### Windows
-1. 从 [GitHub Releases](https://github.com/shenaba/s2-ui/releases/latest) 下载最新 Windows 版本
+1. 从 [GitHub Releases](https://github.com/shenaba/2s-ui/releases/latest) 下载最新 Windows 版本
 2. 解压 ZIP 文件
 3. 以管理员身份运行 `install-windows.bat`
 4. 按安装向导操作
@@ -71,29 +71,29 @@ bash <(curl -Ls https://raw.githubusercontent.com/shenaba/s2-ui/main/install.sh)
 **步骤 1：** 如果要安装指定历史版本，请在安装命令末尾添加版本号。例如版本 `1.0.0`：
 
 ```sh
-VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shenaba/s2-ui/$VERSION/install.sh) $VERSION
+VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shenaba/2s-ui/$VERSION/install.sh) $VERSION
 ```
 
 ## 手动安装
 
 ### Linux/macOS
-1. 根据你的系统和架构，从 GitHub 下载最新版本：[https://github.com/shenaba/s2-ui/releases/latest](https://github.com/shenaba/s2-ui/releases/latest)
-2. **可选：** 获取最新的 `s-ui.sh`：[https://raw.githubusercontent.com/shenaba/s2-ui/main/s-ui.sh](https://raw.githubusercontent.com/shenaba/s2-ui/main/s-ui.sh)
-3. **可选：** 将 `s-ui.sh` 复制到 `/usr/bin/`，并执行 `chmod +x /usr/bin/s-ui`
+1. 根据你的系统和架构，从 GitHub 下载最新版本：[https://github.com/shenaba/2s-ui/releases/latest](https://github.com/shenaba/2s-ui/releases/latest)
+2. **可选：** 获取最新的 `s-ui.sh`：[https://raw.githubusercontent.com/shenaba/2s-ui/main/s-ui.sh](https://raw.githubusercontent.com/shenaba/2s-ui/main/s-ui.sh)
+3. **可选：** 将 `s-ui.sh` 复制到 `/usr/bin/2s-ui`，并执行 `chmod +x /usr/bin/2s-ui`
 4. 解压 `s-ui` 的 tar.gz 文件到你选择的目录，并进入解压目录
 5. 将 `*.service` 文件复制到 `/etc/systemd/system/`，并执行 `systemctl daemon-reload`
-6. 启用自启动并启动 S2-UI 服务：`systemctl enable s-ui --now`
+6. 启用自启动并启动 2S-UI 服务：`systemctl enable s-ui --now`
 7. 启动 sing-box 服务：`systemctl enable sing-box --now`
 
 ### Windows
-1. 从 GitHub 获取最新 Windows 版本：[https://github.com/shenaba/s2-ui/releases/latest](https://github.com/shenaba/s2-ui/releases/latest)
+1. 从 GitHub 获取最新 Windows 版本：[https://github.com/shenaba/2s-ui/releases/latest](https://github.com/shenaba/2s-ui/releases/latest)
 2. 下载对应的 Windows 安装包，例如 `s-ui-windows-amd64.zip`
 3. 将 ZIP 文件解压到你选择的目录
 4. 以管理员身份运行 `install-windows.bat`
 5. 按安装向导操作
 6. 通过 http://localhost:2095/app 访问面板
 
-## 卸载 S2-UI
+## 卸载 2S-UI
 
 ```sh
 sudo -i
@@ -104,6 +104,7 @@ rm -f /etc/systemd/system/sing-box.service
 systemctl daemon-reload
 
 rm -fr /usr/local/s-ui
+rm /usr/bin/2s-ui
 rm /usr/bin/s-ui
 ```
 
@@ -120,34 +121,34 @@ rm /usr/bin/s-ui
 curl -fsSL https://get.docker.com | sh
 ```
 
-**步骤 2：** 安装 S2-UI
+**步骤 2：** 安装 2S-UI
 
 > Docker Compose 方式
 
 ```shell
-mkdir s-ui && cd s-ui
-wget -q https://raw.githubusercontent.com/shenaba/s2-ui/main/docker-compose.yml
+mkdir 2s-ui && cd 2s-ui
+wget -q https://raw.githubusercontent.com/shenaba/2s-ui/main/docker-compose.yml
 docker compose up -d
 ```
 
 > Docker 方式
 
 ```shell
-mkdir s-ui && cd s-ui
+mkdir 2s-ui && cd 2s-ui
 docker run -itd \
     -p 2095:2095 -p 2096:2096 -p 443:443 -p 80:80 \
     -v $PWD/db/:/app/db/ \
     -v $PWD/cert/:/root/cert/ \
     --name s-ui --restart=unless-stopped \
-    shenjar/s2-ui:latest
+    ghcr.io/shenaba/2s-ui:latest
 ```
 
 > 自行构建镜像
 
 ```shell
-git clone https://github.com/shenaba/s2-ui
+git clone https://github.com/shenaba/2s-ui
 git submodule update --init --recursive
-docker build -t s-ui .
+docker build -t 2s-ui .
 ```
 
 </details>
@@ -165,14 +166,14 @@ docker build -t s-ui .
 ### 克隆仓库
 ```shell
 # 克隆仓库
-git clone https://github.com/shenaba/s2-ui
+git clone https://github.com/shenaba/2s-ui
 # 克隆子模块
 git submodule update --init --recursive
 ```
 
 ### - 前端
 
-前端代码请查看 [s2-ui-frontend](https://github.com/shenaba/s2-ui-frontend)
+前端代码请查看 [2s-ui-frontend](https://github.com/shenaba/2s-ui-frontend)
 
 ### - 后端
 > 请先构建一次前端。
@@ -253,4 +254,4 @@ certbot certonly --standalone --register-unsafely-without-email --non-interactiv
 </details>
 
 ## Stargazers over Time
-[![Stargazers over time](https://starchart.cc/shenaba/s2-ui.svg)](https://starchart.cc/shenaba/s2-ui)
+[![Stargazers over time](https://starchart.cc/shenaba/2s-ui.svg)](https://starchart.cc/shenaba/2s-ui)

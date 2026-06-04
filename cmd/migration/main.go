@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/shenaba/s2-ui/config"
+	"github.com/shenaba/2s-ui/config"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

@@ -3,9 +3,9 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/shenaba/s2-ui/config"
-	"github.com/shenaba/s2-ui/database"
-	"github.com/shenaba/s2-ui/service"
+	"github.com/shenaba/2s-ui/config"
+	"github.com/shenaba/2s-ui/database"
+	"github.com/shenaba/2s-ui/service"
 )
 
 func resetAdmin() {

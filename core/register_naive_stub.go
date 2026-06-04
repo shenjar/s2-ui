@@ -4,7 +4,7 @@ package core
 
 import (
 	"github.com/sagernet/sing-box/adapter/outbound"
-	"github.com/shenaba/s2-ui/logger"
+	"github.com/shenaba/2s-ui/logger"
 )
 
 func registerNaiveOutbound(registry *outbound.Registry) {

@@ -3,9 +3,9 @@ package service
 import (
 	"encoding/json"
 
-	"github.com/shenaba/s2-ui/database"
-	"github.com/shenaba/s2-ui/database/model"
-	"github.com/shenaba/s2-ui/util/common"
+	"github.com/shenaba/2s-ui/database"
+	"github.com/shenaba/2s-ui/database/model"
+	"github.com/shenaba/2s-ui/util/common"
 
 	"gorm.io/gorm"
 )

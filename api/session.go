@@ -3,7 +3,7 @@ package api
 import (
 	"encoding/gob"
 
-	"github.com/shenaba/s2-ui/database/model"
+	"github.com/shenaba/2s-ui/database/model"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"

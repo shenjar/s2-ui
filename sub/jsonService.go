@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/shenaba/s2-ui/database"
-	"github.com/shenaba/s2-ui/database/model"
-	"github.com/shenaba/s2-ui/service"
-	"github.com/shenaba/s2-ui/util"
+	"github.com/shenaba/2s-ui/database"
+	"github.com/shenaba/2s-ui/database/model"
+	"github.com/shenaba/2s-ui/service"
+	"github.com/shenaba/2s-ui/util"
 )
 
 const defaultJson = `

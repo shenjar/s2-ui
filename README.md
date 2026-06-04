@@ -1,12 +1,12 @@
-# S2-UI
+# 2S-UI
 [简体中文](README.zh-CN.md)
 
-**An Advanced Web Panel • Built on SagerNet/Sing-Box**
+**An actively maintained sing-box web panel for multi-protocol proxy management, subscription delivery, traffic monitoring, and self-hosted deployment.**
 
-![](https://img.shields.io/github/v/release/shenaba/s2-ui.svg)
-![S2-UI Docker pull](https://img.shields.io/docker/pulls/shenjar/s2-ui.svg)
-[![Go Report Card](https://goreportcard.com/badge/github.com/shenaba/s2-ui)](https://goreportcard.com/report/github.com/shenaba/s2-ui)
-[![Downloads](https://img.shields.io/github/downloads/shenaba/s2-ui/total.svg)](https://img.shields.io/github/downloads/shenaba/s2-ui/total.svg)
+![](https://img.shields.io/github/v/release/shenaba/2s-ui.svg)
+[![Container image](https://img.shields.io/badge/container-ghcr.io%2Fshenaba%2F2s--ui-blue?logo=docker)](https://github.com/shenaba/2s-ui/actions/workflows/docker.yml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/shenaba/2s-ui)](https://goreportcard.com/report/github.com/shenaba/2s-ui)
+[![Downloads](https://img.shields.io/github/downloads/shenaba/2s-ui/total.svg)](https://img.shields.io/github/downloads/shenaba/2s-ui/total.svg)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 > **Disclaimer:** This project is only for personal learning and communication, please do not use it for illegal purposes, please do not use it in a production environment
@@ -15,7 +15,7 @@
 
 **Want to contribute?** See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, coding conventions, testing, and the pull request process.
 
-Based on [alireza0/s-ui](https://github.com/alireza0/s-ui). Thanks to the original author and contributors.
+2S-UI is based on [alireza0/s-ui](https://github.com/alireza0/s-ui) and is maintained as a continued fork. It keeps the original panel direction while updating sing-box support, multi-protocol capabilities, deployment scripts, and ongoing fixes. Thanks to the original author and contributors.
 
 ## Quick Overview
 | Features                               |      Enable?       |
@@ -38,13 +38,13 @@ Based on [alireza0/s-ui](https://github.com/alireza0/s-ui). Thanks to the origin
 
 ## Screenshots
 
-!["Main"](https://github.com/shenaba/s2-ui-frontend/raw/main/media/main.png)
+!["Main"](https://github.com/shenaba/2s-ui-frontend/raw/main/media/main.png)
 
-[Other UI Screenshots](https://github.com/shenaba/s2-ui-frontend/blob/main/screenshots.md)
+[Other UI Screenshots](https://github.com/shenaba/2s-ui-frontend/blob/main/screenshots.md)
 
 ## API Documentation
 
-[API-Documentation Wiki](https://github.com/shenaba/s2-ui/wiki/API-Documentation)
+[API-Documentation Wiki](https://github.com/shenaba/2s-ui/wiki/API-Documentation)
 
 ## Default Installation Information
 - Panel Port: 2095
@@ -57,11 +57,11 @@ Based on [alireza0/s-ui](https://github.com/alireza0/s-ui). Thanks to the origin
 
 ### Linux/macOS
 ```sh
-bash <(curl -Ls https://raw.githubusercontent.com/shenaba/s2-ui/main/install.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/shenaba/2s-ui/main/install.sh)
 ```
 
 ### Windows
-1. Download the latest Windows release from [GitHub Releases](https://github.com/shenaba/s2-ui/releases/latest)
+1. Download the latest Windows release from [GitHub Releases](https://github.com/shenaba/2s-ui/releases/latest)
 2. Extract the ZIP file
 3. Run `install-windows.bat` as Administrator
 4. Follow the installation wizard
@@ -71,29 +71,29 @@ bash <(curl -Ls https://raw.githubusercontent.com/shenaba/s2-ui/main/install.sh)
 **Step 1:** To install your desired legacy version, add the version to the end of the installation command. e.g., ver `1.0.0`:
 
 ```sh
-VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shenaba/s2-ui/$VERSION/install.sh) $VERSION
+VERSION=1.0.0 && bash <(curl -Ls https://raw.githubusercontent.com/shenaba/2s-ui/$VERSION/install.sh) $VERSION
 ```
 
 ## Manual installation
 
 ### Linux/macOS
-1. Get the latest version of S2-UI based on your OS/Architecture from GitHub: [https://github.com/shenaba/s2-ui/releases/latest](https://github.com/shenaba/s2-ui/releases/latest)
-2. **OPTIONAL** Get the latest version of `s-ui.sh` [https://raw.githubusercontent.com/shenaba/s2-ui/main/s-ui.sh](https://raw.githubusercontent.com/shenaba/s2-ui/main/s-ui.sh)
-3. **OPTIONAL** Copy `s-ui.sh` to /usr/bin/ and run `chmod +x /usr/bin/s-ui`.
+1. Get the latest version of 2S-UI based on your OS/Architecture from GitHub: [https://github.com/shenaba/2s-ui/releases/latest](https://github.com/shenaba/2s-ui/releases/latest)
+2. **OPTIONAL** Get the latest version of `s-ui.sh` [https://raw.githubusercontent.com/shenaba/2s-ui/main/s-ui.sh](https://raw.githubusercontent.com/shenaba/2s-ui/main/s-ui.sh)
+3. **OPTIONAL** Copy `s-ui.sh` to `/usr/bin/2s-ui` and run `chmod +x /usr/bin/2s-ui`.
 4. Extract s-ui tar.gz file to a directory of your choice and navigate to the directory where you extracted the tar.gz file.
 5. Copy *.service files to /etc/systemd/system/ and run `systemctl daemon-reload`.
-6. Enable autostart and start S2-UI service using `systemctl enable s-ui --now`
+6. Enable autostart and start 2S-UI service using `systemctl enable s-ui --now`
 7. Start sing-box service using `systemctl enable sing-box --now`
 
 ### Windows
-1. Get the latest Windows version from GitHub: [https://github.com/shenaba/s2-ui/releases/latest](https://github.com/shenaba/s2-ui/releases/latest)
+1. Get the latest Windows version from GitHub: [https://github.com/shenaba/2s-ui/releases/latest](https://github.com/shenaba/2s-ui/releases/latest)
 2. Download the appropriate Windows package (e.g., `s-ui-windows-amd64.zip`)
 3. Extract the ZIP file to a directory of your choice
 4. Run `install-windows.bat` as Administrator
 5. Follow the installation wizard
 6. Access the panel at http://localhost:2095/app
 
-## Uninstall S2-UI
+## Uninstall 2S-UI
 
 ```sh
 sudo -i
@@ -104,6 +104,7 @@ rm -f /etc/systemd/system/sing-box.service
 systemctl daemon-reload
 
 rm -fr /usr/local/s-ui
+rm /usr/bin/2s-ui
 rm /usr/bin/s-ui
 ```
 
@@ -120,34 +121,34 @@ rm /usr/bin/s-ui
 curl -fsSL https://get.docker.com | sh
 ```
 
-**Step 2:** Install S2-UI
+**Step 2:** Install 2S-UI
 
 > Docker compose method
 
 ```shell
-mkdir s-ui && cd s-ui
-wget -q https://raw.githubusercontent.com/shenaba/s2-ui/main/docker-compose.yml
+mkdir 2s-ui && cd 2s-ui
+wget -q https://raw.githubusercontent.com/shenaba/2s-ui/main/docker-compose.yml
 docker compose up -d
 ```
 
 > Use docker
 
 ```shell
-mkdir s-ui && cd s-ui
+mkdir 2s-ui && cd 2s-ui
 docker run -itd \
     -p 2095:2095 -p 2096:2096 -p 443:443 -p 80:80 \
     -v $PWD/db/:/app/db/ \
     -v $PWD/cert/:/root/cert/ \
     --name s-ui --restart=unless-stopped \
-    shenjar/s2-ui:latest
+    ghcr.io/shenaba/2s-ui:latest
 ```
 
 > Build your own image
 
 ```shell
-git clone https://github.com/shenaba/s2-ui
+git clone https://github.com/shenaba/2s-ui
 git submodule update --init --recursive
-docker build -t s-ui .
+docker build -t 2s-ui .
 ```
 
 </details>
@@ -165,7 +166,7 @@ docker build -t s-ui .
 ### Clone the repository
 ```shell
 # clone repository
-git clone https://github.com/shenaba/s2-ui
+git clone https://github.com/shenaba/2s-ui
 # clone submodules
 git submodule update --init --recursive
 ```
@@ -173,7 +174,7 @@ git submodule update --init --recursive
 
 ### - Frontend
 
-Visit [s2-ui-frontend](https://github.com/shenaba/s2-ui-frontend) for frontend code
+Visit [2s-ui-frontend](https://github.com/shenaba/2s-ui-frontend) for frontend code
 
 ### - Backend
 > Please build frontend once before!
@@ -254,4 +255,4 @@ certbot certonly --standalone --register-unsafely-without-email --non-interactiv
 </details>
 
 ## Stargazers over Time
-[![Stargazers over time](https://starchart.cc/shenaba/s2-ui.svg)](https://starchart.cc/shenaba/s2-ui)
+[![Stargazers over time](https://starchart.cc/shenaba/2s-ui.svg)](https://starchart.cc/shenaba/2s-ui)

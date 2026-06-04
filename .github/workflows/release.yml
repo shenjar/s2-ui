@@ -1,4 +1,4 @@
-name: Release S2-UI
+name: Release 2S-UI
 
 on:
   workflow_dispatch:
@@ -165,7 +165,7 @@ jobs:
             echo "CGO_LDFLAGS=--sysroot=$SYSROOT -static" >> $GITHUB_ENV
           fi
 
-      - name: Build s2-ui
+      - name: Build 2s-ui
         run: |
           set -e
           BUILD_TAGS="with_quic,with_grpc,with_utls,with_acme,with_gvisor,badlinkname,tfogo_checklinkname0,with_tailscale"

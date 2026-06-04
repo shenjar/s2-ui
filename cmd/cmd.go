@@ -6,8 +6,8 @@ import (
 	"os"
 	"runtime/debug"
 
-	"github.com/shenaba/s2-ui/cmd/migration"
-	"github.com/shenaba/s2-ui/config"
+	"github.com/shenaba/2s-ui/cmd/migration"
+	"github.com/shenaba/2s-ui/config"
 )
 
 func ParseCmd() {

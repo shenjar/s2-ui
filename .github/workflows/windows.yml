@@ -1,4 +1,4 @@
-name: Build S2-UI for Windows
+name: Build 2S-UI for Windows
 
 on:
   workflow_dispatch:
@@ -92,7 +92,7 @@ jobs:
           # Install zip
           choco install zip -y
 
-      - name: Build s2-ui
+      - name: Build 2s-ui
         shell: bash
         run: |
           export CGO_ENABLED=${{ matrix.cgo }}

@@ -108,10 +108,10 @@ config_after_install() {
             echo -e "${green}username:${usernameTemp}${plain}"
             echo -e "${green}password:${passwordTemp}${plain}"
             echo -e "###############################################"
-            echo -e "${red}if you forgot your login info,you can type ${green}s-ui${red} for configuration menu${plain}"
+            echo -e "${red}if you forgot your login info,you can type ${green}2s-ui${red} for configuration menu${plain}"
             /usr/local/s-ui/sui admin -username ${usernameTemp} -password ${passwordTemp}
         else
-            echo -e "${red} this is your upgrade,will keep old settings,if you forgot your login info,you can type ${green}s-ui${red} for configuration menu${plain}"
+            echo -e "${red} this is your upgrade,will keep old settings,if you forgot your login info,you can type ${green}2s-ui${red} for configuration menu${plain}"
         fi
     fi
 }
@@ -135,20 +135,20 @@ install_s-ui() {
     cd /tmp/
 
     if [ $# == 0 ]; then
-        last_version=$(curl -Ls "https://api.github.com/repos/shenaba/s2-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/shenaba/2s-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}Failed to fetch s-ui version, it maybe due to Github API restrictions, please try it later${plain}"
             exit 1
         fi
         echo -e "Got s-ui latest version: ${last_version}, beginning the installation..."
-        wget -N --no-check-certificate -O /tmp/s-ui-linux-$(arch).tar.gz https://github.com/shenaba/s2-ui/releases/download/${last_version}/s-ui-linux-$(arch).tar.gz
+        wget -N --no-check-certificate -O /tmp/s-ui-linux-$(arch).tar.gz https://github.com/shenaba/2s-ui/releases/download/${last_version}/s-ui-linux-$(arch).tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Downloading s-ui failed, please be sure that your server can access Github ${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/shenaba/s2-ui/releases/download/${last_version}/s-ui-linux-$(arch).tar.gz"
+        url="https://github.com/shenaba/2s-ui/releases/download/${last_version}/s-ui-linux-$(arch).tar.gz"
         echo -e "Beginning the install s-ui v$1"
         wget -N --no-check-certificate -O /tmp/s-ui-linux-$(arch).tar.gz ${url}
         if [[ $? -ne 0 ]]; then
@@ -165,6 +165,7 @@ install_s-ui() {
     rm s-ui-linux-$(arch).tar.gz -f
 
     chmod +x s-ui/sui s-ui/s-ui.sh
+    cp s-ui/s-ui.sh /usr/bin/2s-ui
     cp s-ui/s-ui.sh /usr/bin/s-ui
     cp -rf s-ui /usr/local/
     cp -f s-ui/*.service /etc/systemd/system/
@@ -180,7 +181,7 @@ install_s-ui() {
     /usr/local/s-ui/sui uri
     echo -e "${plain}"
     echo -e ""
-    s-ui help
+    2s-ui help
 }
 
 echo -e "${green}Executing...${plain}"

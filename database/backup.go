@@ -12,11 +12,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/shenaba/s2-ui/cmd/migration"
-	"github.com/shenaba/s2-ui/config"
-	"github.com/shenaba/s2-ui/database/model"
-	"github.com/shenaba/s2-ui/logger"
-	"github.com/shenaba/s2-ui/util/common"
+	"github.com/shenaba/2s-ui/cmd/migration"
+	"github.com/shenaba/2s-ui/config"
+	"github.com/shenaba/2s-ui/database/model"
+	"github.com/shenaba/2s-ui/logger"
+	"github.com/shenaba/2s-ui/util/common"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

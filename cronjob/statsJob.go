@@ -1,8 +1,8 @@
 package cronjob
 
 import (
-	"github.com/shenaba/s2-ui/logger"
-	"github.com/shenaba/s2-ui/service"
+	"github.com/shenaba/2s-ui/logger"
+	"github.com/shenaba/2s-ui/service"
 )
 
 type StatsJob struct {
