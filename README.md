@@ -258,6 +258,10 @@ automatically** before it expires. Both the **web panel** and the
 4. Save and restart — that's it. 2S-UI obtains the certificate and serves
    HTTPS automatically.
 
+Once configured successfully, you can access the panel over HTTPS at
+`https://<your-domain>:<panel-port>/app` (default panel port `2095`), e.g.
+`https://panel.example.com:2095/app`.
+
 **Good to know:**
 
 - 🔁 **Zero-maintenance renewal** — certificates are renewed automatically in
