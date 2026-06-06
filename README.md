@@ -26,6 +26,7 @@
 | Advanced Traffic Routing Interface     | :heavy_check_mark: |
 | Client & Traffic & System Status       | :heavy_check_mark: |
 | Subscription Link (link/json/clash + info)| :heavy_check_mark: |
+| **Automatic HTTPS (ACME / Let's Encrypt)** ✨ | :heavy_check_mark: |
 | Dark/Light Theme                       | :heavy_check_mark: |
 | API Interface                          | :heavy_check_mark: |
 
@@ -217,6 +218,7 @@ To run backend (from root folder of repository):
 - Displays online clients, inbounds and outbounds with traffic statistics, and system status monitoring
 - Subscription service with ability to add external links and subscription
 - HTTPS for secure access to the web panel and subscription service (self-provided domain + SSL certificate)
+- **Automatic SSL certificates** — just enter a domain and 2S-UI issues and auto-renews a free Let's Encrypt certificate for you (no certbot, no cron jobs)
 - Dark/Light theme
 
 ## Environment Variables
@@ -238,8 +240,39 @@ To run backend (from root folder of repository):
 
 ## SSL Certificate
 
+### 🔐 Automatic Certificates (ACME / Let's Encrypt) — Recommended
+
+No more manual certbot runs or renewal cron jobs. Just point a domain at your
+server, flip a switch in the panel, and 2S-UI takes care of the rest — it
+**requests a free Let's Encrypt certificate on the fly and renews it
+automatically** before it expires. Both the **web panel** and the
+**subscription service** can be secured independently.
+
+**How to enable it:**
+
+1. Make sure your domain's DNS `A`/`AAAA` record points to your server.
+2. In **Panel Settings**, set the certificate mode to **ACME** for the web
+   panel and/or the subscription service.
+3. Enter your domain (e.g. `panel.example.com`) and, optionally, an email
+   address for expiry notices from Let's Encrypt.
+4. Save and restart — that's it. 2S-UI obtains the certificate and serves
+   HTTPS automatically.
+
+**Good to know:**
+
+- 🔁 **Zero-maintenance renewal** — certificates are renewed automatically in
+  the background; you never touch them again.
+- 🌐 **HTTP-01 challenge** — TCP port **80** must be free and reachable from the
+  internet during issuance and renewal. 2S-UI binds it only for the moment the
+  challenge runs, then releases it.
+- 💾 **Persisted across restarts** — issued certificates are stored on disk
+  (mount the `cert/` directory when using Docker), so restarts won't trigger
+  re-issuance or hit Let's Encrypt rate limits.
+- 🛟 **Fail-safe** — if a domain is misconfigured or port 80 is blocked, 2S-UI
+  falls back to plain HTTP instead of locking you out of the panel.
+
 <details>
-  <summary>Click for details</summary>
+  <summary>Prefer to manage certificates yourself? (Certbot)</summary>
 
 ### Certbot
 

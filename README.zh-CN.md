@@ -26,6 +26,7 @@
 | 高级流量路由界面 | :heavy_check_mark: |
 | 客户端、流量与系统状态 | :heavy_check_mark: |
 | 订阅链接（link/json/clash + info） | :heavy_check_mark: |
+| **域名自动申请证书（ACME / Let's Encrypt）** ✨ | :heavy_check_mark: |
 | 深色/浅色主题 | :heavy_check_mark: |
 | API 接口 | :heavy_check_mark: |
 
@@ -216,6 +217,7 @@ go build -o sui main.go
 - 展示在线客户端、入站、出站、流量统计和系统状态监控
 - 订阅服务支持添加外部链接和订阅
 - 支持通过自备域名和 SSL 证书，为 Web 面板和订阅服务启用 HTTPS
+- **域名自动申请证书** —— 只需填写域名，2S-UI 即自动签发并自动续期免费的 Let's Encrypt 证书（无需 certbot，无需定时任务）
 - 支持深色/浅色主题
 
 ## 环境变量
@@ -237,8 +239,32 @@ go build -o sui main.go
 
 ## SSL 证书
 
+### 🔐 域名自动申请证书（ACME / Let's Encrypt）—— 推荐
+
+再也不用手动跑 certbot、再也不用配置续期定时任务。只需将域名解析到你的服务器，
+在面板里开启开关，剩下的交给 2S-UI —— 它会**自动在线申请免费的 Let's Encrypt
+证书，并在到期前自动续期**。**Web 面板**和**订阅服务**可以分别独立启用。
+
+**如何开启：**
+
+1. 确保域名的 DNS `A`/`AAAA` 记录已解析到你的服务器。
+2. 在**面板设置**中，将 Web 面板和/或订阅服务的证书模式设置为 **ACME**。
+3. 填写域名（例如 `panel.example.com`），并可选填一个邮箱用于接收 Let's Encrypt
+   的到期提醒。
+4. 保存并重启即可 —— 2S-UI 会自动申请证书并以 HTTPS 提供服务。
+
+**注意事项：**
+
+- 🔁 **零维护自动续期** —— 证书在后台自动续期，签发后你无需再做任何操作。
+- 🌐 **HTTP-01 校验** —— 在签发与续期期间，TCP **80** 端口必须空闲且可从公网访问。
+  2S-UI 只在校验的瞬间占用该端口，完成后立即释放。
+- 💾 **重启后持久保留** —— 已签发的证书会保存在磁盘上（使用 Docker 时请挂载
+  `cert/` 目录），重启不会重复申请，也不会触发 Let's Encrypt 的频率限制。
+- 🛟 **故障保护** —— 如果域名配置有误或 80 端口被占用，2S-UI 会回退到普通 HTTP，
+  绝不会把你锁在面板之外。
+
 <details>
-  <summary>点击展开</summary>
+  <summary>想自己管理证书？（Certbot）</summary>
 
 ### Certbot
 
