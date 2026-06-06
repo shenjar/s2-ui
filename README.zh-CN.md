@@ -1,7 +1,7 @@
 # 2S-UI
-**基于 SagerNet/Sing-Box 的多协议代理 Web 面板，支持订阅分发、流量监控与自托管部署。**
+[English](README.md) · [فارسی](README.fa.md) · [Tiếng Việt](README.vi.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Русский](README.ru.md)
 
-[English](README.md)
+**基于 SagerNet/Sing-Box 的多协议代理 Web 面板，支持订阅分发、流量监控与自托管部署。**
 
 ![](https://img.shields.io/github/v/release/shenaba/2s-ui.svg)
 [![Container image](https://img.shields.io/badge/container-ghcr.io%2Fshenaba%2F2s--ui-blue?logo=docker)](https://github.com/shenaba/2s-ui/actions/workflows/docker.yml)

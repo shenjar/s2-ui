@@ -1,5 +1,5 @@
 # 2S-UI
-[简体中文](README.zh-CN.md)
+[English](README.md) · [فارسی](README.fa.md) · [Tiếng Việt](README.vi.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Русский](README.ru.md)
 
 **An actively maintained sing-box web panel for multi-protocol proxy management, subscription delivery, traffic monitoring, and self-hosted deployment.**
 
