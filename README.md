@@ -242,38 +242,14 @@ To run backend (from root folder of repository):
 
 ### 🔐 Automatic Certificates (ACME / Let's Encrypt) — Recommended
 
-No more manual certbot runs or renewal cron jobs. Just point a domain at your
-server, flip a switch in the panel, and 2S-UI takes care of the rest — it
-**requests a free Let's Encrypt certificate on the fly and renews it
-automatically** before it expires. Both the **web panel** and the
-**subscription service** can be secured independently.
+Just enter a domain in **Panel Settings** (certificate mode → **ACME**) and
+2S-UI auto-issues and auto-renews a free Let's Encrypt certificate — no certbot,
+no cron jobs. Web panel and subscription service can be enabled independently.
+Once done, the panel is reachable at `https://<your-domain>:2095/app`.
 
-**How to enable it:**
-
-1. Make sure your domain's DNS `A`/`AAAA` record points to your server.
-2. In **Panel Settings**, set the certificate mode to **ACME** for the web
-   panel and/or the subscription service.
-3. Enter your domain (e.g. `panel.example.com`) and, optionally, an email
-   address for expiry notices from Let's Encrypt.
-4. Save and restart — that's it. 2S-UI obtains the certificate and serves
-   HTTPS automatically.
-
-Once configured successfully, you can access the panel over HTTPS at
-`https://<your-domain>:<panel-port>/app` (default panel port `2095`), e.g.
-`https://panel.example.com:2095/app`.
-
-**Good to know:**
-
-- 🔁 **Zero-maintenance renewal** — certificates are renewed automatically in
-  the background; you never touch them again.
-- 🌐 **HTTP-01 challenge** — TCP port **80** must be free and reachable from the
-  internet during issuance and renewal. 2S-UI binds it only for the moment the
-  challenge runs, then releases it.
-- 💾 **Persisted across restarts** — issued certificates are stored on disk
-  (mount the `cert/` directory when using Docker), so restarts won't trigger
-  re-issuance or hit Let's Encrypt rate limits.
-- 🛟 **Fail-safe** — if a domain is misconfigured or port 80 is blocked, 2S-UI
-  falls back to plain HTTP instead of locking you out of the panel.
+> Requires TCP port **80** reachable from the internet (HTTP-01 challenge; with
+> Docker publish `-p 80:80`). Certificates are stored under `cert/` and survive
+> restarts. If the domain/port is misconfigured, 2S-UI falls back to HTTP.
 
 <details>
   <summary>Prefer to manage certificates yourself? (Certbot)</summary>
