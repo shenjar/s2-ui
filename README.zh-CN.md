@@ -1,7 +1,7 @@
 # 2S-UI
-**基于 SagerNet/Sing-Box 的多协议代理 Web 面板，支持订阅分发、流量监控与自托管部署。**
+[English](README.md) · [فارسی](README.fa.md) · [Tiếng Việt](README.vi.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Русский](README.ru.md)
 
-[English](README.md)
+**基于 SagerNet/Sing-Box 的多协议代理 Web 面板，支持订阅分发、流量监控与自托管部署。**
 
 ![](https://img.shields.io/github/v/release/shenaba/2s-ui.svg)
 [![Container image](https://img.shields.io/badge/container-ghcr.io%2Fshenaba%2F2s--ui-blue?logo=docker)](https://github.com/shenaba/2s-ui/actions/workflows/docker.yml)
@@ -26,6 +26,7 @@
 | 高级流量路由界面 | :heavy_check_mark: |
 | 客户端、流量与系统状态 | :heavy_check_mark: |
 | 订阅链接（link/json/clash + info） | :heavy_check_mark: |
+| **域名自动申请证书（ACME / Let's Encrypt）** ✨ | :heavy_check_mark: |
 | 深色/浅色主题 | :heavy_check_mark: |
 | API 接口 | :heavy_check_mark: |
 
@@ -216,6 +217,7 @@ go build -o sui main.go
 - 展示在线客户端、入站、出站、流量统计和系统状态监控
 - 订阅服务支持添加外部链接和订阅
 - 支持通过自备域名和 SSL 证书，为 Web 面板和订阅服务启用 HTTPS
+- **域名自动申请证书** —— 只需填写域名，2S-UI 即自动签发并自动续期免费的 Let's Encrypt 证书（无需 certbot，无需定时任务）
 - 支持深色/浅色主题
 
 ## 环境变量
@@ -237,8 +239,17 @@ go build -o sui main.go
 
 ## SSL 证书
 
+### 🔐 域名自动申请证书（ACME / Let's Encrypt）—— 推荐
+
+只需在**面板设置**里填写域名（证书模式选 **ACME**），2S-UI 即自动签发并自动续期
+免费的 Let's Encrypt 证书，无需 certbot、无需定时任务。Web 面板与订阅服务可分别
+独立启用。配置成功后即可通过 `https://<你的域名>:2095/app` 访问面板。
+
+> 需要 TCP **80** 端口可从公网访问（HTTP-01 校验；Docker 部署请映射 `-p 80:80`）。
+> 证书保存在 `cert/` 目录，重启后保留。若域名/端口配置有误，会自动回退 HTTP。
+
 <details>
-  <summary>点击展开</summary>
+  <summary>想自己管理证书？（Certbot）</summary>
 
 ### Certbot
 

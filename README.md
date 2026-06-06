@@ -1,5 +1,5 @@
 # 2S-UI
-[简体中文](README.zh-CN.md)
+[English](README.md) · [فارسی](README.fa.md) · [Tiếng Việt](README.vi.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [Русский](README.ru.md)
 
 **An actively maintained sing-box web panel for multi-protocol proxy management, subscription delivery, traffic monitoring, and self-hosted deployment.**
 
@@ -26,6 +26,7 @@
 | Advanced Traffic Routing Interface     | :heavy_check_mark: |
 | Client & Traffic & System Status       | :heavy_check_mark: |
 | Subscription Link (link/json/clash + info)| :heavy_check_mark: |
+| **Automatic HTTPS (ACME / Let's Encrypt)** ✨ | :heavy_check_mark: |
 | Dark/Light Theme                       | :heavy_check_mark: |
 | API Interface                          | :heavy_check_mark: |
 
@@ -217,6 +218,7 @@ To run backend (from root folder of repository):
 - Displays online clients, inbounds and outbounds with traffic statistics, and system status monitoring
 - Subscription service with ability to add external links and subscription
 - HTTPS for secure access to the web panel and subscription service (self-provided domain + SSL certificate)
+- **Automatic SSL certificates** — just enter a domain and 2S-UI issues and auto-renews a free Let's Encrypt certificate for you (no certbot, no cron jobs)
 - Dark/Light theme
 
 ## Environment Variables
@@ -238,8 +240,19 @@ To run backend (from root folder of repository):
 
 ## SSL Certificate
 
+### 🔐 Automatic Certificates (ACME / Let's Encrypt) — Recommended
+
+Just enter a domain in **Panel Settings** (certificate mode → **ACME**) and
+2S-UI auto-issues and auto-renews a free Let's Encrypt certificate — no certbot,
+no cron jobs. Web panel and subscription service can be enabled independently.
+Once done, the panel is reachable at `https://<your-domain>:2095/app`.
+
+> Requires TCP port **80** reachable from the internet (HTTP-01 challenge; with
+> Docker publish `-p 80:80`). Certificates are stored under `cert/` and survive
+> restarts. If the domain/port is misconfigured, 2S-UI falls back to HTTP.
+
 <details>
-  <summary>Click for details</summary>
+  <summary>Prefer to manage certificates yourself? (Certbot)</summary>
 
 ### Certbot
 
