@@ -6,7 +6,7 @@
 ![](https://img.shields.io/github/v/release/shenaba/2s-ui.svg)
 [![Container image](https://img.shields.io/badge/container-ghcr.io%2Fshenaba%2F2s--ui-blue?logo=docker)](https://github.com/shenaba/2s-ui/actions/workflows/docker.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/shenaba/2s-ui)](https://goreportcard.com/report/github.com/shenaba/2s-ui)
-[![Downloads](https://img.shields.io/github/downloads/shenaba/2s-ui/total.svg)](https://img.shields.io/github/downloads/shenaba/2s-ui/total.svg)
+[![Downloads](https://img.shields.io/github/downloads/shenaba/2s-ui/total.svg)](https://github.com/shenaba/2s-ui/releases)
 [![License](https://img.shields.io/badge/license-GPL%20V3-blue.svg?longCache=true)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 > **Tuyên bố miễn trừ trách nhiệm:** Dự án này chỉ dành cho mục đích học tập và trao đổi cá nhân, vui lòng không sử dụng cho các mục đích bất hợp pháp, vui lòng không sử dụng trong môi trường production
