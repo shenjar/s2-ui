@@ -136,7 +136,7 @@ docker compose up -d
 ```shell
 mkdir 2s-ui && cd 2s-ui
 docker run -itd \
-    -p 2095:2095 -p 2096:2096 -p 443:443 -p 80:80 \
+    -p 2095:2095 -p 2096:2096 -p 443:443 \
     -v $PWD/db/:/app/db/ \
     -v $PWD/cert/:/root/cert/ \
     --name s-ui --restart=unless-stopped \
@@ -247,8 +247,9 @@ Just enter a domain in **Panel Settings** (certificate mode → **ACME**) and
 no cron jobs. Web panel and subscription service can be enabled independently.
 Once done, the panel is reachable at `https://<your-domain>:2095/app`.
 
-> Requires TCP port **80** reachable from the internet (HTTP-01 challenge; with
-> Docker publish `-p 80:80`). Certificates are stored under `cert/` and survive
+> Requires TCP port **80** reachable from the internet (HTTP-01 challenge). To
+> publish port 80 with Docker: uncomment the `80:80` line in `docker-compose.yml`,
+> or add `-p 80:80` to `docker run`. Certificates are stored under `cert/` and survive
 > restarts. If the domain/port is misconfigured, 2S-UI falls back to HTTP.
 
 <details>
