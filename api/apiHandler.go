@@ -52,6 +52,8 @@ func (a *APIHandler) postHandler(c *gin.Context) {
 		a.ApiService.SubConvert(c)
 	case "testAcme":
 		a.ApiService.TestAcme(c)
+	case "issueCert":
+		a.ApiService.IssueCert(c)
 	case "importdb":
 		a.ApiService.ImportDb(c)
 	case "addToken":
@@ -103,6 +105,8 @@ func (a *APIHandler) getHandler(c *gin.Context) {
 		a.ApiService.GetSingboxConfig(c)
 	case "checkOutbound":
 		a.ApiService.GetCheckOutbound(c)
+	case "detectNginx":
+		a.ApiService.DetectNginx(c)
 	default:
 		jsonMsg(c, "failed", common.NewError("unknown action: ", action))
 	}
