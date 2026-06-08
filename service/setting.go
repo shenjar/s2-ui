@@ -49,6 +49,7 @@ var defaultValueMap = map[string]string{
 	"webCertFile":   "",
 	"webKeyFile":    "",
 	"webCertMode":   "",
+	"webNginx":      "",
 	"webAcmeEmail":  "",
 	"webPath":       "/app/",
 	"webURI":        "",
@@ -205,6 +206,15 @@ func (s *SettingService) GetKeyFile() (string, error) {
 
 func (s *SettingService) GetWebCertMode() (string, error) {
 	return s.getString("webCertMode")
+}
+
+func (s *SettingService) GetWebNginx() (bool, error) {
+	// 空字符串表示"尚未设置/未部署",安全地按 false 处理(避免 ParseBool("") 报错)
+	v, err := s.getString("webNginx")
+	if err != nil || v == "" {
+		return false, nil
+	}
+	return strconv.ParseBool(v)
 }
 
 func (s *SettingService) GetWebAcmeEmail() (string, error) {
@@ -392,12 +402,15 @@ func (s *SettingService) Save(tx *gorm.DB, data json.RawMessage) error {
 	}
 	// When ACME auto-cert is enabled the manual cert/key paths are unused (and
 	// may be stale/deleted), so skip their file-existence check below.
+	// nginx 模式下面板自身只跑 HTTP,web 侧 cert/key 同样不使用,也跳过检查
+	// (此时证书可能尚未申请,路径还不存在)。
 	webAcme := settings["webCertMode"] == "acme"
 	subAcme := settings["subCertMode"] == "acme"
+	webNginx := settings["webNginx"] == "true"
 	for key, obj := range settings {
 		// Secure file existence check
 		if obj != "" &&
-			(((key == "webCertFile" || key == "webKeyFile") && !webAcme) ||
+			(((key == "webCertFile" || key == "webKeyFile") && !webAcme && !webNginx) ||
 				((key == "subCertFile" || key == "subKeyFile") && !subAcme)) {
 			err = s.fileExists(obj)
 			if err != nil {
