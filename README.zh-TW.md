@@ -139,7 +139,7 @@ docker compose up -d
 ```shell
 mkdir 2s-ui && cd 2s-ui
 docker run -itd \
-    -p 2095:2095 -p 2096:2096 -p 443:443 -p 80:80 \
+    -p 2095:2095 -p 2096:2096 -p 443:443 \
     -v $PWD/db/:/app/db/ \
     -v $PWD/cert/:/root/cert/ \
     --name s-ui --restart=unless-stopped \
@@ -248,7 +248,7 @@ go build -o sui main.go
 免費的 Let's Encrypt 憑證，無需 certbot、無需排程工作。Web 面板與訂閱服務可分別
 獨立啟用。設定成功後即可透過 `https://<你的網域>:2095/app` 存取面板。
 
-> 需要 TCP **80** 連接埠可從公網存取（HTTP-01 校驗；Docker 部署請對應 `-p 80:80`）。
+> 需要 TCP **80** 連接埠可從公網存取（HTTP-01 校驗）。Docker 部署對應 80 連接埠：docker compose 方式請取消 `docker-compose.yml` 中 `80:80` 該行的註解；docker run 方式請加上 `-p 80:80`。
 > 憑證儲存在 `cert/` 目錄，重新啟動後保留。若網域/連接埠設定有誤，會自動回復 HTTP。
 
 <details>
