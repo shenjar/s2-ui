@@ -38,6 +38,21 @@ type IssueResult struct {
 	NginxMode bool   `json:"nginxMode"`
 }
 
+// withRootHome 返回把 HOME 固定为 /root 的环境变量(去重)。systemd 服务即使
+// 以 root 运行也往往不设 HOME,导致 acme.sh 把自己装到 /.acme.sh 并在运行时
+// 找不到账户/证书目录;强制 HOME=/root 可与 s-ui.sh 脚本保持一致。
+func withRootHome() []string {
+	env := os.Environ()
+	out := make([]string, 0, len(env)+1)
+	for _, e := range env {
+		if strings.HasPrefix(e, "HOME=") {
+			continue
+		}
+		out = append(out, e)
+	}
+	return append(out, "HOME=/root")
+}
+
 // runCmd 执行外部命令,合并 stdout/stderr,超时或非零退出码都包成 error
 // 并把输出原文附在错误里回传前端,便于排查(如 80 端口被占、域名未解析等)。
 func runCmd(timeout time.Duration, name string, args ...string) (string, error) {
@@ -45,6 +60,7 @@ func runCmd(timeout time.Duration, name string, args ...string) (string, error) 
 	defer cancel()
 
 	cmd := exec.CommandContext(ctx, name, args...)
+	cmd.Env = withRootHome()
 	out, err := cmd.CombinedOutput()
 	output := strings.TrimSpace(string(out))
 
@@ -80,7 +96,7 @@ func ensureAcmeSh() error {
 		return nil
 	}
 	logger.Info("acme.sh 未安装,开始自动安装...")
-	out, err := runCmd(acmeInstallTO, "sh", "-c", "curl https://get.acme.sh | sh")
+	out, err := runCmd(acmeInstallTO, "sh", "-c", "curl https://get.acme.sh | sh -s -- --home /root/.acme.sh")
 	if err != nil {
 		return common.NewErrorf("自动安装 acme.sh 失败,请在服务器手动安装(s-ui 脚本 SSL 菜单)。详情:\n%s", out)
 	}
