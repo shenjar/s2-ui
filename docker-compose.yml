@@ -14,8 +14,6 @@ services:
       - "2096:2096"
       # Uncomment the line below to enable automatic ACME (Let's Encrypt)
       # certificates. It binds host port 80, which must be free.
-      # 取消下面这行注释以启用自动 ACME (Let's Encrypt) 证书申请。
-      # 它会占用服务器的 80 端口，请确保该端口未被其他程序使用。
       # - "80:80"
     networks:
       - s-ui
