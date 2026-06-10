@@ -19,6 +19,9 @@ import store from './store'
 // Plugins
 import { registerPlugins } from '@/plugins'
 
+// Global styles
+import '@/styles/global.scss'
+
 // Locale
 import { i18n } from '@/locales'
 import Vue3PersianDatetimePicker from 'vue3-persian-datetime-picker'

@@ -25,10 +25,3 @@ const loading:Ref = inject('loading')?? ref(false)
 // Change page title
 document.title = "2S-UI " + document.location.hostname
 </script>
-
-<style>
-.v-overlay .v-list-item,
-.v-field__input {
-  direction: ltr;
-}
-</style>

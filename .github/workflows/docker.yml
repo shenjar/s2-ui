@@ -16,7 +16,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6.0.3
         with:
-          submodules: recursive
       - name: Set up Node.js
         uses: actions/setup-node@v6
         with:

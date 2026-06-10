@@ -30,7 +30,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6.0.3
         with:
-          submodules: recursive
           fetch-depth: 1
 
       - name: Setup Node.js

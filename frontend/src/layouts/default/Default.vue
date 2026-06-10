@@ -25,14 +25,3 @@ const isMobile = computed( ():boolean =>{
   return smAndDown.value
 })
 </script>
-
-<style>
-.v-card-subtitle {
-  text-align: center;
-  border-bottom: 1px solid gray;
-  min-height: 20px;
-}
-.v-switch.v-input {
-  padding-inline-start: .6rem;
-}
-</style>

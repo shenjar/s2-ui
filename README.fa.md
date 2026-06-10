@@ -40,9 +40,8 @@
 
 ## تصاویر
 
-!["Main"](https://github.com/shenaba/2s-ui-frontend/raw/main/media/main.png)
+!["Main"](media/dashboard-light.png)
 
-[سایر تصاویر رابط کاربری](https://github.com/shenaba/2s-ui-frontend/blob/main/screenshots.md)
 
 ## مستندات API
 
@@ -148,7 +147,6 @@ docker run -itd \
 
 ```shell
 git clone https://github.com/shenaba/2s-ui
-git submodule update --init --recursive
 docker build -t 2s-ui .
 ```
 
@@ -168,14 +166,12 @@ docker build -t 2s-ui .
 ```shell
 # clone repository
 git clone https://github.com/shenaba/2s-ui
-# clone submodules
-git submodule update --init --recursive
 ```
 
 
 ### - Frontend
 
-برای کد frontend به [2s-ui-frontend](https://github.com/shenaba/2s-ui-frontend) مراجعه کنید
+کد frontend در پوشه `frontend/` همین مخزن قرار دارد
 
 ### - Backend
 > لطفاً ابتدا یک‌بار frontend را بسازید!

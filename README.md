@@ -39,9 +39,8 @@
 
 ## Screenshots
 
-!["Main"](https://github.com/shenaba/2s-ui-frontend/raw/main/media/main.png)
+!["Main"](media/dashboard-light.png)
 
-[Other UI Screenshots](https://github.com/shenaba/2s-ui-frontend/blob/main/screenshots.md)
 
 ## API Documentation
 
@@ -147,7 +146,6 @@ docker run -itd \
 
 ```shell
 git clone https://github.com/shenaba/2s-ui
-git submodule update --init --recursive
 docker build -t 2s-ui .
 ```
 
@@ -167,14 +165,12 @@ docker build -t 2s-ui .
 ```shell
 # clone repository
 git clone https://github.com/shenaba/2s-ui
-# clone submodules
-git submodule update --init --recursive
 ```
 
 
 ### - Frontend
 
-Visit [2s-ui-frontend](https://github.com/shenaba/2s-ui-frontend) for frontend code
+The frontend code lives in the `frontend/` directory of this repository
 
 ### - Backend
 > Please build frontend once before!

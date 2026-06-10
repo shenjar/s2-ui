@@ -26,19 +26,18 @@ Please be respectful and constructive when interacting with maintainers and othe
 ### Prerequisites
 
 - **Go**: 1.25 or later (see `go.mod` for the exact version).
-- **Git**: For cloning and submodules.
+- **Git**: For cloning the repository.
 - **C compiler**: Required for CGO (e.g. `gcc`, `musl-dev` on Alpine).
 - **Node.js** (optional): Only if you plan to work on or rebuild the frontend. The repo can be run with pre-built frontend assets.
 
-### Clone and Submodules
+### Clone
 
 ```bash
 git clone https://github.com/shenaba/2s-ui
 cd 2s-ui
-git submodule update --init --recursive
 ```
 
-The **frontend** lives in a submodule. If you only work on the backend, you can use the existing `web/html` contents or build the frontend once (see below).
+The **frontend** lives in the `frontend/` directory. If you only work on the backend, you can use the existing `web/html` contents or build the frontend once (see below).
 
 ### Backend-Only Development (quickest)
 
@@ -61,7 +60,7 @@ The **frontend** lives in a submodule. If you only work on the backend, you can 
 
 ### Full Stack (Backend + Frontend)
 
-1. **Frontend** (separate repo in submodule):
+1. **Frontend** (in the `frontend/` directory):
 
    ```bash
    cd frontend
@@ -107,7 +106,6 @@ Use the same tags when building locally if you need feature parity with releases
 ```bash
 git clone https://github.com/shenaba/2s-ui
 cd 2s-ui
-git submodule update --init --recursive
 docker build -t 2s-ui .
 # or: docker compose up -d
 ```

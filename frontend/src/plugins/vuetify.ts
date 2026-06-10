@@ -8,7 +8,6 @@
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles/main.css'
 
-import colors from 'vuetify/util/colors'
 import { fa, en, vi, zhHans, zhHant, ru } from 'vuetify/locale'
 
 // Composables
@@ -17,18 +16,43 @@ import { createVuetify } from 'vuetify'
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
   defaults: {
-    VRow: { density: 'compact' },
     VTextField: {
-      variant: 'solo-filled',
+      variant: 'outlined',
+      color: 'primary',
     },
     VSelect: {
-      variant: 'solo-filled',
+      variant: 'outlined',
+      color: 'primary',
     },
     VCombobox: {
-      variant: 'solo-filled',
+      variant: 'outlined',
+      color: 'primary',
     },
     VTextarea: {
-      variant: 'solo-filled',
+      variant: 'outlined',
+      color: 'primary',
+    },
+    VAutocomplete: {
+      variant: 'outlined',
+      color: 'primary',
+    },
+    VSwitch: {
+      color: 'primary',
+    },
+    VCheckbox: {
+      color: 'primary',
+    },
+    VTabs: {
+      color: 'primary',
+    },
+    VSlider: {
+      color: 'primary',
+    },
+    VDataTable: {
+      hover: true,
+    },
+    VDataTableServer: {
+      hover: true,
     },
   },
   theme: {
@@ -36,14 +60,36 @@ export default createVuetify({
     themes: {
       light: {
         colors: {
-          error: '#FF5252',
-          background: colors.grey.lighten4,
+          primary: '#4F46E5',
+          secondary: '#0EA5E9',
+          accent: '#7C3AED',
+          background: '#F2F4F8',
+          surface: '#FFFFFF',
+          error: '#DC2626',
+          success: '#16A34A',
+          warning: '#D97706',
+          info: '#0284C7',
+        },
+        variables: {
+          'border-color': '#475569',
+          'border-opacity': 0.14,
         },
       },
       dark: {
         colors: {
-          primary: colors.blue.darken4,
-          error: colors.red.accent3,
+          primary: '#818CF8',
+          secondary: '#38BDF8',
+          accent: '#A78BFA',
+          background: '#0E1117',
+          surface: '#171B24',
+          error: '#F87171',
+          success: '#4ADE80',
+          warning: '#FBBF24',
+          info: '#7DD3FC',
+        },
+        variables: {
+          'border-color': '#94A3B8',
+          'border-opacity': 0.16,
         },
       },
     },
