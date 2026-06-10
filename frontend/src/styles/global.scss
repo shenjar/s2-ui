@@ -1,0 +1,91 @@
+/**
+ * src/styles/global.scss
+ *
+ * Global application styles, imported once from main.ts.
+ */
+
+@font-face {
+  font-display: swap;
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  src: url('@/assets/Vazirmatn-UI-NL-Regular.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC, U+0030-0039;
+}
+
+:root {
+  --v-font-body: 'Inter', -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
+    'Vazirmatn', 'Helvetica Neue', 'Noto Sans', sans-serif;
+  --v-font-heading: var(--v-font-body);
+  /* Soften elevation shadows app-wide */
+  --v-shadow-key-opacity: 0.14;
+  --v-shadow-ambient-opacity: 0.08;
+}
+
+/* ---------- scrollbars ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--v-border-color), 0.4) transparent;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: rgba(var(--v-border-color), 0.35);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--v-border-color), 0.55);
+}
+
+/* ---------- typography ---------- */
+.v-btn {
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 500;
+}
+
+/* ---------- cards ---------- */
+.v-card--variant-elevated,
+.v-card--variant-outlined {
+  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+}
+
+/* Section subtitles used as separators inside edit dialogs */
+.v-card-subtitle {
+  text-align: center;
+  min-height: 20px;
+  border-bottom: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+  letter-spacing: 0.04em;
+}
+
+/* ---------- dialogs ---------- */
+/* Outlined field labels float above the input border; scrolling dialog
+   bodies and v-window panes clip them without extra headroom. */
+.v-dialog .v-card-text {
+  padding-top: 18px !important;
+}
+.v-window {
+  padding-top: 18px;
+}
+
+/* ---------- tables ---------- */
+.v-table thead th {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(var(--v-theme-on-surface), var(--v-medium-emphasis-opacity)) !important;
+  white-space: nowrap;
+}
+
+/* ---------- misc ---------- */
+.v-switch.v-input {
+  padding-inline-start: 0.6rem;
+}
+
+.v-overlay .v-list-item,
+.v-field__input {
+  direction: ltr;
+}

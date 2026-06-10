@@ -2,85 +2,76 @@
   <LogVue v-model="logModal.visible" :control="logModal" :visible="logModal.visible" />
   <Backup v-model="backupModal.visible" :control="backupModal" :visible="backupModal.visible" />
   <UsageStats v-model:visible="usageStatsModal.visible" />
-  <v-container class="fill-height" :loading="loading">
-    <v-responsive :class="reloadItems.length>0 ? 'fill-height text-center' : 'align-center'" >
-      <v-row class="d-flex align-center justify-center">
-        <v-col cols="auto">
-          <v-img src="@/assets/logo.svg" :width="reloadItems.length>0 ? 100 : 200"></v-img>
-        </v-col>
-      </v-row>
-      <v-row class="d-flex align-center justify-center">
-        <v-col cols="auto">
-          <v-dialog v-model="menu" :close-on-content-click="false" transition="scale-transition" max-width="800">
-            <template v-slot:activator="{ props }">
-              <v-btn v-bind="props" hide-details variant="tonal" elevation="3">{{ $t('main.tiles') }} <v-icon icon="mdi-star-plus" /></v-btn>
-            </template>
-            <v-card rounded="xl">
-              <v-card-title>
-                <v-row>
-                  <v-col>
-                    {{ $t('main.tiles') }}
-                  </v-col>
-                  <v-spacer></v-spacer>
-                  <v-col cols="auto"><v-icon icon="mdi-close" @click="menu = false"></v-icon></v-col>
-                </v-row>
-              </v-card-title>
-              <v-divider></v-divider>
-              <v-row v-for="items in menuItems" density="compact">
-                <v-col cols="12">
-                  <v-card :subtitle="items.title" variant="flat">
-                    <v-card-text>
-                      <v-row density="compact">
-                        <v-col cols="12" md="6" lg="3" v-for="item in items.value">
-                          <v-switch
-                          density="compact"
-                          v-model="reloadItems"
-                          :value="item.value"
-                          color="primary"
-                          :label="item.title"
-                          hide-details></v-switch>
-                        </v-col>
-                      </v-row>
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-card>
-          </v-dialog>
-          <v-btn variant="tonal" hide-details 
-            style="margin-inline-start: 10px;" elevation="3"
-            @click="backupModal.visible = true">{{ $t('main.backup.title') }}<v-icon icon="mdi-backup-restore" />
-          </v-btn>
-          <v-btn variant="tonal" hide-details
-            style="margin-inline-start: 10px;" elevation="3"
-            @click="logModal.visible = true">{{ $t('basic.log.title') }} <v-icon icon="mdi-list-box-outline" />
-          </v-btn>
-          <v-btn variant="tonal" hide-details
-            style="margin-inline-start: 10px;" elevation="3"
-            @click="usageStatsModal.visible = true">{{ $t('main.stats.title') }} <v-icon icon="mdi-chart-box-outline" />
-          </v-btn>
-        </v-col>
-      </v-row>
+  <v-dialog v-model="menu" transition="dialog-bottom-transition" max-width="760">
+    <v-card rounded="xl">
+      <v-card-item>
+        <v-card-title>{{ $t('main.tiles') }}</v-card-title>
+        <template v-slot:append>
+          <v-btn icon="mdi-close" variant="text" density="comfortable" @click="menu = false"></v-btn>
+        </template>
+      </v-card-item>
+      <v-divider></v-divider>
+      <v-card-text>
+        <template v-for="items in menuItems">
+          <div class="text-overline text-medium-emphasis mt-2">{{ items.title }}</div>
+          <v-row density="compact">
+            <v-col cols="12" sm="6" md="4" v-for="item in items.value">
+              <v-switch
+                density="compact"
+                v-model="reloadItems"
+                :value="item.value"
+                color="primary"
+                :label="item.title"
+                hide-details></v-switch>
+            </v-col>
+          </v-row>
+        </template>
+      </v-card-text>
+    </v-card>
+  </v-dialog>
+  <v-container fluid :loading="loading" class="dashboard">
+    <template v-if="reloadItems.length == 0">
+      <div class="dashboard-empty text-center">
+        <v-img src="@/assets/logo.svg" width="140" height="140" class="mx-auto mb-4 flex-grow-0" />
+        <div class="dashboard-brand mb-6">2S-UI</div>
+        <div class="d-flex flex-wrap ga-2 justify-center">
+          <v-btn color="primary" prepend-icon="mdi-star-plus" @click="menu = true">{{ $t('main.tiles') }}</v-btn>
+          <v-btn variant="tonal" prepend-icon="mdi-backup-restore" @click="backupModal.visible = true">{{ $t('main.backup.title') }}</v-btn>
+          <v-btn variant="tonal" prepend-icon="mdi-list-box-outline" @click="logModal.visible = true">{{ $t('basic.log.title') }}</v-btn>
+          <v-btn variant="tonal" prepend-icon="mdi-chart-box-outline" @click="usageStatsModal.visible = true">{{ $t('main.stats.title') }}</v-btn>
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <div class="d-flex flex-wrap ga-2 mb-4 align-center">
+        <v-btn color="primary" variant="tonal" prepend-icon="mdi-star-plus" @click="menu = true">{{ $t('main.tiles') }}</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn variant="text" prepend-icon="mdi-backup-restore" @click="backupModal.visible = true">{{ $t('main.backup.title') }}</v-btn>
+        <v-btn variant="text" prepend-icon="mdi-list-box-outline" @click="logModal.visible = true">{{ $t('basic.log.title') }}</v-btn>
+        <v-btn variant="text" prepend-icon="mdi-chart-box-outline" @click="usageStatsModal.visible = true">{{ $t('main.stats.title') }}</v-btn>
+      </div>
       <v-row>
-        <v-col cols="12" sm="6" md="3" v-for="i in reloadItems" :key="i">
-          <v-card class="rounded-lg" variant="outlined" height="210px" elevation="5">
-            <v-card-title>
-              {{ menuItems.flatMap(cat => cat.value).find(m => m.value == i)?.title }}
-              <template v-if="i == 'i-sys'">
-                <v-icon icon="mdi-update" color="primary"
-                  @click="reloadSys()" size="small" v-tooltip:top="$t('actions.update')"
-                  style="margin-inline-start: 10px;">
-                </v-icon>
+        <v-col cols="12" sm="6" md="4" lg="3" v-for="i in reloadItems" :key="i">
+          <v-card class="tile-card" height="210">
+            <v-card-item class="tile-head">
+              <v-card-title class="tile-title">
+                {{ menuItems.flatMap(cat => cat.value).find(m => m.value == i)?.title }}
+              </v-card-title>
+              <template v-slot:append>
+                <template v-if="i == 'i-sys'">
+                  <v-icon icon="mdi-update" color="primary"
+                    @click="reloadSys()" size="small" v-tooltip:top="$t('actions.update')">
+                  </v-icon>
+                </template>
+                <template v-if="i == 'h-net'">
+                  <v-icon icon="mdi-information-outline" color="primary" size="small"
+                    v-tooltip:top="'↓' +
+                    HumanReadable.sizeFormat(tilesData.net?.recv) + ' - ' +
+                    HumanReadable.sizeFormat(tilesData.net?.sent) + '↑'">
+                  </v-icon>
+                </template>
               </template>
-              <template v-if="i == 'h-net'">
-                <v-icon icon="mdi-information" color="primary" size="small"
-                  v-tooltip:top="'↓' + 
-                  HumanReadable.sizeFormat(tilesData.net?.recv) + ' - ' + 
-                  HumanReadable.sizeFormat(tilesData.net?.sent) + '↑'"
-                  style="margin-inline-start: 10px;">
-                </v-icon>
-              </template>
-            </v-card-title>
+            </v-card-item>
             <v-card-text style="padding: 0 16px;" align="center" justify="center">
               <Gauge :tilesData="tilesData" :type="i" v-if="i.charAt(0) == 'g'" />
               <History :tilesData="tilesData" :type="i" v-if="i.charAt(0) == 'h'" />
@@ -129,7 +120,7 @@
                 <v-row>
                   <v-col cols="4">{{ $t('main.info.running') }}</v-col>
                   <v-col cols="8">
-                    <v-chip density="compact" color="success" variant="flat" v-if="tilesData.sbd?.running">{{ $t('yes') }}</v-chip> 
+                    <v-chip density="compact" color="success" variant="flat" v-if="tilesData.sbd?.running">{{ $t('yes') }}</v-chip>
                     <v-chip density="compact" color="error" variant="flat" v-else>{{ $t('no') }}</v-chip>
                     <v-chip density="compact" color="transparent" v-if="tilesData.sbd?.running && !loading" style="cursor: pointer;" @click="restartSingbox()">
                       <v-tooltip activator="parent" location="top">
@@ -142,7 +133,7 @@
                   <v-col cols="8">
                     <v-chip density="compact" color="primary" variant="flat" v-if="tilesData.sbd?.stats?.Alloc">
                       {{ HumanReadable.sizeFormat(tilesData.sbd?.stats?.Alloc) }}
-                    </v-chip> 
+                    </v-chip>
                   </v-col>
                   <v-col cols="4">{{ $t('main.info.threads') }}</v-col>
                   <v-col cols="8">
@@ -184,7 +175,7 @@
           </v-card>
         </v-col>
       </v-row>
-    </v-responsive>
+    </template>
   </v-container>
 </template>
 
@@ -293,3 +284,24 @@ const restartSingbox = async () => {
   loading.value = false
 }
 </script>
+
+<style scoped>
+.dashboard-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100dvh - 200px);
+}
+.dashboard-brand {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+.tile-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.tile-head {
+  padding-bottom: 4px;
+}
+</style>

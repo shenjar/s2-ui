@@ -9,6 +9,6 @@
 
 <style>
 .v-main {
-  margin: 10px;
+  margin: 14px;
 }
 </style>

@@ -42,9 +42,8 @@
 
 ## 螢幕截圖
 
-!["Main"](https://github.com/shenaba/2s-ui-frontend/raw/main/media/main.png)
+!["Main"](media/dashboard-light.png)
 
-[更多 UI 截圖](https://github.com/shenaba/2s-ui-frontend/blob/main/screenshots.md)
 
 ## API 文件
 
@@ -150,7 +149,6 @@ docker run -itd \
 
 ```shell
 git clone https://github.com/shenaba/2s-ui
-git submodule update --init --recursive
 docker build -t 2s-ui .
 ```
 
@@ -171,12 +169,11 @@ docker build -t 2s-ui .
 # 複製儲存庫
 git clone https://github.com/shenaba/2s-ui
 # 複製子模組
-git submodule update --init --recursive
 ```
 
 ### - 前端
 
-前端程式碼請查看 [2s-ui-frontend](https://github.com/shenaba/2s-ui-frontend)
+前端程式碼位於本儲存庫的 `frontend/` 目錄
 
 ### - 後端
 > 請先建置一次前端。

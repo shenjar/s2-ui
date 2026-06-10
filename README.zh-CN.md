@@ -39,9 +39,8 @@
 
 ## 截图
 
-!["Main"](https://github.com/shenaba/2s-ui-frontend/raw/main/media/main.png)
+!["Main"](media/dashboard-light.png)
 
-[更多 UI 截图](https://github.com/shenaba/2s-ui-frontend/blob/main/screenshots.md)
 
 ## API 文档
 
@@ -147,7 +146,6 @@ docker run -itd \
 
 ```shell
 git clone https://github.com/shenaba/2s-ui
-git submodule update --init --recursive
 docker build -t 2s-ui .
 ```
 
@@ -168,12 +166,11 @@ docker build -t 2s-ui .
 # 克隆仓库
 git clone https://github.com/shenaba/2s-ui
 # 克隆子模块
-git submodule update --init --recursive
 ```
 
 ### - 前端
 
-前端代码请查看 [2s-ui-frontend](https://github.com/shenaba/2s-ui-frontend)
+前端代码位于本仓库的 `frontend/` 目录
 
 ### - 后端
 > 请先构建一次前端。

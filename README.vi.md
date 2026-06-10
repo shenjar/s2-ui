@@ -39,9 +39,8 @@
 
 ## Ảnh chụp màn hình
 
-!["Main"](https://github.com/shenaba/2s-ui-frontend/raw/main/media/main.png)
+!["Main"](media/dashboard-light.png)
 
-[Các ảnh chụp màn hình giao diện khác](https://github.com/shenaba/2s-ui-frontend/blob/main/screenshots.md)
 
 ## Tài liệu API
 
@@ -147,7 +146,6 @@ docker run -itd \
 
 ```shell
 git clone https://github.com/shenaba/2s-ui
-git submodule update --init --recursive
 docker build -t 2s-ui .
 ```
 
@@ -167,14 +165,12 @@ docker build -t 2s-ui .
 ```shell
 # sao chép repository
 git clone https://github.com/shenaba/2s-ui
-# sao chép các submodule
-git submodule update --init --recursive
 ```
 
 
 ### - Frontend
 
-Truy cập [2s-ui-frontend](https://github.com/shenaba/2s-ui-frontend) để xem mã frontend
+Mã frontend nằm trong thư mục `frontend/` của kho lưu trữ này
 
 ### - Backend
 > Vui lòng xây dựng frontend một lần trước!
