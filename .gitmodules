@@ -1,4 +1,0 @@
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/shenaba/2s-ui-frontend.git
-	branch = main
