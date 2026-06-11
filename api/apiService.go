@@ -407,6 +407,24 @@ func (a *ApiService) TestAcme(c *gin.Context) {
 	pureJsonMsg(c, true, "")
 }
 
+func (a *ApiService) DetectNginx(c *gin.Context) {
+	var acme service.AcmeService
+	jsonObj(c, acme.DetectNginx(), nil)
+}
+
+func (a *ApiService) IssueCert(c *gin.Context) {
+	domain := c.Request.FormValue("domain")
+	email := c.Request.FormValue("email")
+	useNginx := c.Request.FormValue("nginx") == "true"
+	var acme service.AcmeService
+	res, err := acme.IssueWeb(domain, email, useNginx)
+	if err != nil {
+		pureJsonMsg(c, false, err.Error())
+		return
+	}
+	jsonMsgObj(c, "", res, nil)
+}
+
 func (a *ApiService) GetCheckOutbound(c *gin.Context) {
 	tag := c.Query("tag")
 	link := c.Query("link")

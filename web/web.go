@@ -9,6 +9,7 @@ import (
 	"io/fs"
 	"net"
 	"net/http"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
@@ -174,7 +175,11 @@ func (s *Server) Start() (err error) {
 		return err
 	}
 	scheme := "http"
-	if certMode == "acme" {
+	nginxMode, _ := s.settingService.GetWebNginx()
+	if runtime.GOOS != "windows" && nginxMode {
+		// 已部署 nginx:由 nginx 终结 SSL,面板自身只跑 HTTP,不加载任何证书
+		scheme = "http (behind nginx)"
+	} else if certMode == "acme" {
 		// Auto-issue/renew via Let's Encrypt (HTTP-01). On any failure we fall
 		// back to plain HTTP so a misconfigured domain or blocked port 80 can
 		// never lock the operator out of the panel.
